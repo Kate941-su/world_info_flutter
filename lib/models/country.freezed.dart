@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$Country {
   String get name => throw _privateConstructorUsedError;
-  Image get image => throw _privateConstructorUsedError;
+  String get path => throw _privateConstructorUsedError;
   Region get region => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
 
@@ -30,7 +30,7 @@ abstract class $CountryCopyWith<$Res> {
   factory $CountryCopyWith(Country value, $Res Function(Country) then) =
       _$CountryCopyWithImpl<$Res, Country>;
   @useResult
-  $Res call({String name, Image image, Region region, bool isFavorite});
+  $Res call({String name, String path, Region region, bool isFavorite});
 }
 
 /// @nodoc
@@ -47,7 +47,7 @@ class _$CountryCopyWithImpl<$Res, $Val extends Country>
   @override
   $Res call({
     Object? name = null,
-    Object? image = null,
+    Object? path = null,
     Object? region = null,
     Object? isFavorite = null,
   }) {
@@ -56,10 +56,10 @@ class _$CountryCopyWithImpl<$Res, $Val extends Country>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as Image,
+      path: null == path
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
       region: null == region
           ? _value.region
           : region // ignore: cast_nullable_to_non_nullable
@@ -79,7 +79,7 @@ abstract class _$$CountryImplCopyWith<$Res> implements $CountryCopyWith<$Res> {
       __$$CountryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, Image image, Region region, bool isFavorite});
+  $Res call({String name, String path, Region region, bool isFavorite});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ class __$$CountryImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
-    Object? image = null,
+    Object? path = null,
     Object? region = null,
     Object? isFavorite = null,
   }) {
@@ -103,10 +103,10 @@ class __$$CountryImplCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      image: null == image
-          ? _value.image
-          : image // ignore: cast_nullable_to_non_nullable
-              as Image,
+      path: null == path
+          ? _value.path
+          : path // ignore: cast_nullable_to_non_nullable
+              as String,
       region: null == region
           ? _value.region
           : region // ignore: cast_nullable_to_non_nullable
@@ -124,14 +124,14 @@ class __$$CountryImplCopyWithImpl<$Res>
 class _$CountryImpl implements _Country {
   const _$CountryImpl(
       {required this.name,
-      required this.image,
+      required this.path,
       required this.region,
       this.isFavorite = false});
 
   @override
   final String name;
   @override
-  final Image image;
+  final String path;
   @override
   final Region region;
   @override
@@ -140,7 +140,7 @@ class _$CountryImpl implements _Country {
 
   @override
   String toString() {
-    return 'Country(name: $name, image: $image, region: $region, isFavorite: $isFavorite)';
+    return 'Country(name: $name, path: $path, region: $region, isFavorite: $isFavorite)';
   }
 
   @override
@@ -149,14 +149,14 @@ class _$CountryImpl implements _Country {
         (other.runtimeType == runtimeType &&
             other is _$CountryImpl &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.image, image) || other.image == image) &&
+            (identical(other.path, path) || other.path == path) &&
             (identical(other.region, region) || other.region == region) &&
             (identical(other.isFavorite, isFavorite) ||
                 other.isFavorite == isFavorite));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, image, region, isFavorite);
+  int get hashCode => Object.hash(runtimeType, name, path, region, isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -168,14 +168,14 @@ class _$CountryImpl implements _Country {
 abstract class _Country implements Country {
   const factory _Country(
       {required final String name,
-      required final Image image,
+      required final String path,
       required final Region region,
       final bool isFavorite}) = _$CountryImpl;
 
   @override
   String get name;
   @override
-  Image get image;
+  String get path;
   @override
   Region get region;
   @override
