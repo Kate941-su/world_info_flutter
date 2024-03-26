@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rate_converter_flutter/ui/main_screen.dart';
-import 'counter_event.dart';
-import 'counter_state.dart';
-import 'counter_bloc.dart';
+import 'blocs/counter_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
@@ -35,73 +33,63 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Title'),
-      ),
-      body: BlocBuilder<CounterBloc, CounterState>(
-        builder: (context, state) {
-          return MainScreen();
-        },
-      ),
-    );
+    return  const MainScreen();
   }
 }
 
-Widget _counter(BuildContext context, int counter) {
-  return Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          counter.toString(),
-          style: Theme.of(context).textTheme.headlineLarge,
-        ),
-        const SizedBox(
-          height: 50,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            MaterialButton(
-              color: Colors.red,
-              elevation: 0.0,
-              height: 50,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8))),
-              child: const Text(
-                "-",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              ),
-              onPressed: () {
-                context
-                    .read<CounterBloc>()
-                    .add(const CounterEvent.numberDecreaseEvent());
-              },
-            ),
-            const SizedBox(
-              width: 50,
-            ),
-            MaterialButton(
-              color: Colors.green,
-              elevation: 0.0,
-              height: 50,
-              shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(8))),
-              child: const Text(
-                "+",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              ),
-              onPressed: () {
-                context
-                    .read<CounterBloc>()
-                    .add(const CounterEvent.numberIncreaseEvent());
-              },
-            ),
-          ],
-        )
-      ],
-    ),
-  );
-}
+// Widget _counter(BuildContext context, int counter) {
+//   return Center(
+//     child: Column(
+//       mainAxisAlignment: MainAxisAlignment.center,
+//       children: [
+//         Text(
+//           counter.toString(),
+//           style: Theme.of(context).textTheme.headlineLarge,
+//         ),
+//         const SizedBox(
+//           height: 50,
+//         ),
+//         Row(
+//           mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             MaterialButton(
+//               color: Colors.red,
+//               elevation: 0.0,
+//               height: 50,
+//               shape: const RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.all(Radius.circular(8))),
+//               child: const Text(
+//                 "-",
+//                 style: TextStyle(fontSize: 22, color: Colors.white),
+//               ),
+//               onPressed: () {
+//                 context
+//                     .read<CounterBloc>()
+//                     .add(const CounterEvent.numberDecreaseEvent());
+//               },
+//             ),
+//             const SizedBox(
+//               width: 50,
+//             ),
+//             MaterialButton(
+//               color: Colors.green,
+//               elevation: 0.0,
+//               height: 50,
+//               shape: const RoundedRectangleBorder(
+//                   borderRadius: BorderRadius.all(Radius.circular(8))),
+//               child: const Text(
+//                 "+",
+//                 style: TextStyle(fontSize: 22, color: Colors.white),
+//               ),
+//               onPressed: () {
+//                 context
+//                     .read<CounterBloc>()
+//                     .add(const CounterEvent.numberIncreaseEvent());
+//               },
+//             ),
+//           ],
+//         )
+//       ],
+//     ),
+//   );
+// }
