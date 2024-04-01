@@ -16,6 +16,139 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainScreenState {
+  MainScreenType get screenType => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MainScreenStateCopyWith<MainScreenState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MainScreenStateCopyWith<$Res> {
+  factory $MainScreenStateCopyWith(
+          MainScreenState value, $Res Function(MainScreenState) then) =
+      _$MainScreenStateCopyWithImpl<$Res, MainScreenState>;
+  @useResult
+  $Res call({MainScreenType screenType});
+
+  $MainScreenTypeCopyWith<$Res> get screenType;
+}
+
+/// @nodoc
+class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
+    implements $MainScreenStateCopyWith<$Res> {
+  _$MainScreenStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? screenType = null,
+  }) {
+    return _then(_value.copyWith(
+      screenType: null == screenType
+          ? _value.screenType
+          : screenType // ignore: cast_nullable_to_non_nullable
+              as MainScreenType,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MainScreenTypeCopyWith<$Res> get screenType {
+    return $MainScreenTypeCopyWith<$Res>(_value.screenType, (value) {
+      return _then(_value.copyWith(screenType: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$MainScreenTypeImplCopyWith<$Res>
+    implements $MainScreenStateCopyWith<$Res> {
+  factory _$$MainScreenTypeImplCopyWith(_$MainScreenTypeImpl value,
+          $Res Function(_$MainScreenTypeImpl) then) =
+      __$$MainScreenTypeImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({MainScreenType screenType});
+
+  @override
+  $MainScreenTypeCopyWith<$Res> get screenType;
+}
+
+/// @nodoc
+class __$$MainScreenTypeImplCopyWithImpl<$Res>
+    extends _$MainScreenStateCopyWithImpl<$Res, _$MainScreenTypeImpl>
+    implements _$$MainScreenTypeImplCopyWith<$Res> {
+  __$$MainScreenTypeImplCopyWithImpl(
+      _$MainScreenTypeImpl _value, $Res Function(_$MainScreenTypeImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? screenType = null,
+  }) {
+    return _then(_$MainScreenTypeImpl(
+      screenType: null == screenType
+          ? _value.screenType
+          : screenType // ignore: cast_nullable_to_non_nullable
+              as MainScreenType,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MainScreenTypeImpl implements _MainScreenType {
+  const _$MainScreenTypeImpl({required this.screenType});
+
+  @override
+  final MainScreenType screenType;
+
+  @override
+  String toString() {
+    return 'MainScreenState(screenType: $screenType)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$MainScreenTypeImpl &&
+            (identical(other.screenType, screenType) ||
+                other.screenType == screenType));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, screenType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$MainScreenTypeImplCopyWith<_$MainScreenTypeImpl> get copyWith =>
+      __$$MainScreenTypeImplCopyWithImpl<_$MainScreenTypeImpl>(
+          this, _$identity);
+}
+
+abstract class _MainScreenType implements MainScreenState {
+  const factory _MainScreenType({required final MainScreenType screenType}) =
+      _$MainScreenTypeImpl;
+
+  @override
+  MainScreenType get screenType;
+  @override
+  @JsonKey(ignore: true)
+  _$$MainScreenTypeImplCopyWith<_$MainScreenTypeImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$MainScreenType {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() top,
@@ -57,16 +190,16 @@ mixin _$MainScreenState {
 }
 
 /// @nodoc
-abstract class $MainScreenStateCopyWith<$Res> {
-  factory $MainScreenStateCopyWith(
-          MainScreenState value, $Res Function(MainScreenState) then) =
-      _$MainScreenStateCopyWithImpl<$Res, MainScreenState>;
+abstract class $MainScreenTypeCopyWith<$Res> {
+  factory $MainScreenTypeCopyWith(
+          MainScreenType value, $Res Function(MainScreenType) then) =
+      _$MainScreenTypeCopyWithImpl<$Res, MainScreenType>;
 }
 
 /// @nodoc
-class _$MainScreenStateCopyWithImpl<$Res, $Val extends MainScreenState>
-    implements $MainScreenStateCopyWith<$Res> {
-  _$MainScreenStateCopyWithImpl(this._value, this._then);
+class _$MainScreenTypeCopyWithImpl<$Res, $Val extends MainScreenType>
+    implements $MainScreenTypeCopyWith<$Res> {
+  _$MainScreenTypeCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -82,7 +215,7 @@ abstract class _$$TopImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$TopImplCopyWithImpl<$Res>
-    extends _$MainScreenStateCopyWithImpl<$Res, _$TopImpl>
+    extends _$MainScreenTypeCopyWithImpl<$Res, _$TopImpl>
     implements _$$TopImplCopyWith<$Res> {
   __$$TopImplCopyWithImpl(_$TopImpl _value, $Res Function(_$TopImpl) _then)
       : super(_value, _then);
@@ -95,7 +228,7 @@ class _$TopImpl extends _Top {
 
   @override
   String toString() {
-    return 'MainScreenState.top()';
+    return 'MainScreenType.top()';
   }
 
   @override
@@ -170,7 +303,7 @@ class _$TopImpl extends _Top {
   }
 }
 
-abstract class _Top extends MainScreenState {
+abstract class _Top extends MainScreenType {
   const factory _Top() = _$TopImpl;
   const _Top._() : super._();
 }
@@ -184,7 +317,7 @@ abstract class _$$SelectImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$SelectImplCopyWithImpl<$Res>
-    extends _$MainScreenStateCopyWithImpl<$Res, _$SelectImpl>
+    extends _$MainScreenTypeCopyWithImpl<$Res, _$SelectImpl>
     implements _$$SelectImplCopyWith<$Res> {
   __$$SelectImplCopyWithImpl(
       _$SelectImpl _value, $Res Function(_$SelectImpl) _then)
@@ -198,7 +331,7 @@ class _$SelectImpl extends _Select {
 
   @override
   String toString() {
-    return 'MainScreenState.select()';
+    return 'MainScreenType.select()';
   }
 
   @override
@@ -273,7 +406,7 @@ class _$SelectImpl extends _Select {
   }
 }
 
-abstract class _Select extends MainScreenState {
+abstract class _Select extends MainScreenType {
   const factory _Select() = _$SelectImpl;
   const _Select._() : super._();
 }

@@ -16,19 +16,20 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$MainScreenStateEvent {
+  MainScreenType get screenType => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() screenStateChangeEvent,
+    required TResult Function(MainScreenType screenType) screenStateChangeEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? screenStateChangeEvent,
+    TResult? Function(MainScreenType screenType)? screenStateChangeEvent,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? screenStateChangeEvent,
+    TResult Function(MainScreenType screenType)? screenStateChangeEvent,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +50,10 @@ mixin _$MainScreenStateEvent {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MainScreenStateEventCopyWith<MainScreenStateEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -56,6 +61,10 @@ abstract class $MainScreenStateEventCopyWith<$Res> {
   factory $MainScreenStateEventCopyWith(MainScreenStateEvent value,
           $Res Function(MainScreenStateEvent) then) =
       _$MainScreenStateEventCopyWithImpl<$Res, MainScreenStateEvent>;
+  @useResult
+  $Res call({MainScreenType screenType});
+
+  $MainScreenTypeCopyWith<$Res> get screenType;
 }
 
 /// @nodoc
@@ -68,14 +77,42 @@ class _$MainScreenStateEventCopyWithImpl<$Res,
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? screenType = null,
+  }) {
+    return _then(_value.copyWith(
+      screenType: null == screenType
+          ? _value.screenType
+          : screenType // ignore: cast_nullable_to_non_nullable
+              as MainScreenType,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MainScreenTypeCopyWith<$Res> get screenType {
+    return $MainScreenTypeCopyWith<$Res>(_value.screenType, (value) {
+      return _then(_value.copyWith(screenType: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$ScreenStateChangeEventImplCopyWith<$Res> {
+abstract class _$$ScreenStateChangeEventImplCopyWith<$Res>
+    implements $MainScreenStateEventCopyWith<$Res> {
   factory _$$ScreenStateChangeEventImplCopyWith(
           _$ScreenStateChangeEventImpl value,
           $Res Function(_$ScreenStateChangeEventImpl) then) =
       __$$ScreenStateChangeEventImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({MainScreenType screenType});
+
+  @override
+  $MainScreenTypeCopyWith<$Res> get screenType;
 }
 
 /// @nodoc
@@ -87,52 +124,77 @@ class __$$ScreenStateChangeEventImplCopyWithImpl<$Res>
       _$ScreenStateChangeEventImpl _value,
       $Res Function(_$ScreenStateChangeEventImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? screenType = null,
+  }) {
+    return _then(_$ScreenStateChangeEventImpl(
+      screenType: null == screenType
+          ? _value.screenType
+          : screenType // ignore: cast_nullable_to_non_nullable
+              as MainScreenType,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ScreenStateChangeEventImpl implements _ScreenStateChangeEvent {
-  const _$ScreenStateChangeEventImpl();
+  const _$ScreenStateChangeEventImpl({required this.screenType});
+
+  @override
+  final MainScreenType screenType;
 
   @override
   String toString() {
-    return 'MainScreenStateEvent.screenStateChangeEvent()';
+    return 'MainScreenStateEvent.screenStateChangeEvent(screenType: $screenType)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreenStateChangeEventImpl);
+            other is _$ScreenStateChangeEventImpl &&
+            (identical(other.screenType, screenType) ||
+                other.screenType == screenType));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, screenType);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ScreenStateChangeEventImplCopyWith<_$ScreenStateChangeEventImpl>
+      get copyWith => __$$ScreenStateChangeEventImplCopyWithImpl<
+          _$ScreenStateChangeEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() screenStateChangeEvent,
+    required TResult Function(MainScreenType screenType) screenStateChangeEvent,
   }) {
-    return screenStateChangeEvent();
+    return screenStateChangeEvent(screenType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? screenStateChangeEvent,
+    TResult? Function(MainScreenType screenType)? screenStateChangeEvent,
   }) {
-    return screenStateChangeEvent?.call();
+    return screenStateChangeEvent?.call(screenType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? screenStateChangeEvent,
+    TResult Function(MainScreenType screenType)? screenStateChangeEvent,
     required TResult orElse(),
   }) {
     if (screenStateChangeEvent != null) {
-      return screenStateChangeEvent();
+      return screenStateChangeEvent(screenType);
     }
     return orElse();
   }
@@ -168,5 +230,14 @@ class _$ScreenStateChangeEventImpl implements _ScreenStateChangeEvent {
 }
 
 abstract class _ScreenStateChangeEvent implements MainScreenStateEvent {
-  const factory _ScreenStateChangeEvent() = _$ScreenStateChangeEventImpl;
+  const factory _ScreenStateChangeEvent(
+          {required final MainScreenType screenType}) =
+      _$ScreenStateChangeEventImpl;
+
+  @override
+  MainScreenType get screenType;
+  @override
+  @JsonKey(ignore: true)
+  _$$ScreenStateChangeEventImplCopyWith<_$ScreenStateChangeEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
