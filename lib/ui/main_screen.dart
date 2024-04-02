@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rate_converter_flutter/blocs/event/main_screen_state_event.dart';
 import 'package:rate_converter_flutter/blocs/main_screen_state_bloc.dart';
 import 'package:rate_converter_flutter/ui/country_list_view.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_view.dart';
@@ -22,7 +23,9 @@ class MainScreen extends StatelessWidget {
       ],
       child: BlocBuilder<MainScreenStateBloc, MainScreenState>(
           builder: (context, state) {
-        return TopViewScaffold();
+        return state.screenType == const MainScreenType.top()
+            ? const TopViewScaffold()
+            : CountryListView();
       }),
     );
   }
@@ -33,22 +36,29 @@ class TopViewScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text('Main Menu'),
-          actions: [
-            IconButton(
-              icon: const Icon(Icons.menu),
-              onPressed: () => {},
-            ),
-          ]),
-      body: BlocBuilder<CounterBloc, CounterState>(
+    return BlocBuilder<MainScreenStateBloc, MainScreenState>(
         builder: (context, state) {
-          return const _TopView();
-        },
-      ),
-    );
+      return Scaffold(
+        appBar: AppBar(
+            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+            title: const Text('Main Menu'),
+            actions: [
+              IconButton(
+                  icon: const Icon(Icons.menu),
+                  onPressed: () {
+                    context.read<MainScreenStateBloc>().add(
+                        const MainScreenStateEvent.screenStateChangeEvent(
+                            screenType: MainScreenType.select()));
+                    print('state will be ${state.screenType}');
+                  }),
+            ]),
+        body: BlocBuilder<CounterBloc, CounterState>(
+          builder: (context, state) {
+            return const _TopView();
+          },
+        ),
+      );
+    });
   }
 }
 
