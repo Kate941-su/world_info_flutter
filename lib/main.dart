@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
+import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/ui/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,6 +27,8 @@ class MyApp extends StatelessWidget {
           BlocProvider<BottomCountrySelectBloc>(
             create: (context) => BottomCountrySelectBloc(),
           ),
+          BlocProvider<PositionSelectBloc>(
+              create: (context) => PositionSelectBloc()),
         ],
         child: MaterialApp(
           title: 'Flutter Demo',

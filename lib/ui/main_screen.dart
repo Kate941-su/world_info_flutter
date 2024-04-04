@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/event/main_screen_state_event.dart';
+import 'package:rate_converter_flutter/blocs/event/position_select_event.dart';
 import 'package:rate_converter_flutter/blocs/event/top_country_select_event.dart';
 import 'package:rate_converter_flutter/blocs/main_screen_state_bloc.dart';
+import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/state/bottom_country_select_state.dart';
+import 'package:rate_converter_flutter/blocs/state/position_select_state.dart';
 import 'package:rate_converter_flutter/blocs/state/top_country_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
 import 'package:rate_converter_flutter/ui/country_list_view.dart';
@@ -68,6 +71,12 @@ class _TopView extends StatelessWidget {
             child: CountryView(
                 country: state.country!,
                 onTap: () {
+                  context.read<PositionSelectBloc>().add(
+                      const PositionSelectEvent(
+                          position: PositionSelect.top()));
+                  context.read<MainScreenStateBloc>().add(
+                      const MainScreenStateEvent.screenStateChangeEvent(screenType: MainScreenType.select())
+                  );
                   context
                       .read<TopCountrySelectBloc>()
                       .add(const TopCountrySelectEvent.topCountryChangeEvent());
@@ -81,9 +90,13 @@ class _TopView extends StatelessWidget {
               child: CountryView(
             country: state.country!,
             onTap: () {
-              context
-                  .read<BottomCountrySelectBloc>()
-                  .add(const BottomCountrySelectEvent.bottomCountryChangeEvent());
+              context.read<PositionSelectBloc>().add(
+                  const PositionSelectEvent(position: PositionSelect.bottom()));
+              context.read<MainScreenStateBloc>().add(
+                const MainScreenStateEvent.screenStateChangeEvent(screenType: MainScreenType.select())
+              );
+              context.read<BottomCountrySelectBloc>().add(
+                  const BottomCountrySelectEvent.bottomCountryChangeEvent());
             },
           ));
         }),
