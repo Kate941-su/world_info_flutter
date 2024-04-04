@@ -728,6 +728,9 @@ class $AssetsIconsSvgGen {
   /// File path: assets/icons/svg/um.svg
   SvgGenImage get um => const SvgGenImage('assets/icons/svg/um.svg');
 
+  /// File path: assets/icons/svg/until.svg
+  SvgGenImage get until => const SvgGenImage('assets/icons/svg/until.svg');
+
   /// File path: assets/icons/svg/us.svg
   SvgGenImage get us => const SvgGenImage('assets/icons/svg/us.svg');
 
@@ -1020,6 +1023,7 @@ class $AssetsIconsSvgGen {
         ua,
         ug,
         um,
+        until,
         us,
         uy,
         uz,

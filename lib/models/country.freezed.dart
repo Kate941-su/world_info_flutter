@@ -16,9 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Country {
-  String get name => throw _privateConstructorUsedError;
-  String get path => throw _privateConstructorUsedError;
-  Region get region => throw _privateConstructorUsedError;
+  CountryCode get code => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +28,7 @@ abstract class $CountryCopyWith<$Res> {
   factory $CountryCopyWith(Country value, $Res Function(Country) then) =
       _$CountryCopyWithImpl<$Res, Country>;
   @useResult
-  $Res call({String name, String path, Region region, bool isFavorite});
+  $Res call({CountryCode code, bool isFavorite});
 }
 
 /// @nodoc
@@ -46,24 +44,14 @@ class _$CountryCopyWithImpl<$Res, $Val extends Country>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? path = null,
-    Object? region = null,
+    Object? code = null,
     Object? isFavorite = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
-      region: null == region
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
-              as Region,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as CountryCode,
       isFavorite: null == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
@@ -79,7 +67,7 @@ abstract class _$$CountryImplCopyWith<$Res> implements $CountryCopyWith<$Res> {
       __$$CountryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String name, String path, Region region, bool isFavorite});
+  $Res call({CountryCode code, bool isFavorite});
 }
 
 /// @nodoc
@@ -93,24 +81,14 @@ class __$$CountryImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? path = null,
-    Object? region = null,
+    Object? code = null,
     Object? isFavorite = null,
   }) {
     return _then(_$CountryImpl(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
-      region: null == region
-          ? _value.region
-          : region // ignore: cast_nullable_to_non_nullable
-              as Region,
+      code: null == code
+          ? _value.code
+          : code // ignore: cast_nullable_to_non_nullable
+              as CountryCode,
       isFavorite: null == isFavorite
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
@@ -122,25 +100,17 @@ class __$$CountryImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CountryImpl implements _Country {
-  const _$CountryImpl(
-      {required this.name,
-      required this.path,
-      required this.region,
-      this.isFavorite = false});
+  const _$CountryImpl({required this.code, this.isFavorite = false});
 
   @override
-  final String name;
-  @override
-  final String path;
-  @override
-  final Region region;
+  final CountryCode code;
   @override
   @JsonKey()
   final bool isFavorite;
 
   @override
   String toString() {
-    return 'Country(name: $name, path: $path, region: $region, isFavorite: $isFavorite)';
+    return 'Country(code: $code, isFavorite: $isFavorite)';
   }
 
   @override
@@ -148,15 +118,13 @@ class _$CountryImpl implements _Country {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CountryImpl &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.path, path) || other.path == path) &&
-            (identical(other.region, region) || other.region == region) &&
+            (identical(other.code, code) || other.code == code) &&
             (identical(other.isFavorite, isFavorite) ||
                 other.isFavorite == isFavorite));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, name, path, region, isFavorite);
+  int get hashCode => Object.hash(runtimeType, code, isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -167,17 +135,10 @@ class _$CountryImpl implements _Country {
 
 abstract class _Country implements Country {
   const factory _Country(
-      {required final String name,
-      required final String path,
-      required final Region region,
-      final bool isFavorite}) = _$CountryImpl;
+      {required final CountryCode code, final bool isFavorite}) = _$CountryImpl;
 
   @override
-  String get name;
-  @override
-  String get path;
-  @override
-  Region get region;
+  CountryCode get code;
   @override
   bool get isFavorite;
   @override

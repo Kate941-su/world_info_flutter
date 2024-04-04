@@ -1,13 +1,17 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/event/main_screen_state_event.dart';
+import 'package:rate_converter_flutter/blocs/event/top_country_select_event.dart';
 import 'package:rate_converter_flutter/blocs/main_screen_state_bloc.dart';
+import 'package:rate_converter_flutter/blocs/state/bottom_country_select_state.dart';
+import 'package:rate_converter_flutter/blocs/state/top_country_select_state.dart';
+import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
 import 'package:rate_converter_flutter/ui/country_list_view.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_view.dart';
 
-import '../blocs/counter_bloc.dart';
-import '../blocs/state/counter_state.dart';
+import '../blocs/event/bottom_country_select_event.dart';
 import '../blocs/state/main_screen_state.dart';
 
 class MainScreen extends StatelessWidget {
@@ -15,19 +19,12 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider<MainScreenStateBloc>(
-          create: (context) => MainScreenStateBloc(),
-        ),
-      ],
-      child: BlocBuilder<MainScreenStateBloc, MainScreenState>(
-          builder: (context, state) {
-        return state.screenType == const MainScreenType.top()
-            ? const TopViewScaffold()
-            : CountryListView();
-      }),
-    );
+    return BlocBuilder<MainScreenStateBloc, MainScreenState>(
+        builder: (context, state) {
+      return state.screenType == const MainScreenType.top()
+          ? const TopViewScaffold()
+          : CountryListView();
+    });
   }
 }
 
@@ -46,17 +43,13 @@ class TopViewScaffold extends StatelessWidget {
               IconButton(
                   icon: const Icon(Icons.menu),
                   onPressed: () {
+                    // TODO: Transition with animation.
                     context.read<MainScreenStateBloc>().add(
                         const MainScreenStateEvent.screenStateChangeEvent(
                             screenType: MainScreenType.select()));
-                    print('state will be ${state.screenType}');
                   }),
             ]),
-        body: BlocBuilder<CounterBloc, CounterState>(
-          builder: (context, state) {
-            return const _TopView();
-          },
-        ),
+        body: const _TopView(),
       );
     });
   }
@@ -67,11 +60,33 @@ class _TopView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        Expanded(child: CountryView()),
-        Divider(),
-        Expanded(child: CountryView()),
+        BlocBuilder<TopCountrySelectBloc, TopCountrySelectState>(
+            builder: (context, state) {
+          return Expanded(
+            child: CountryView(
+                country: state.country!,
+                onTap: () {
+                  context
+                      .read<TopCountrySelectBloc>()
+                      .add(const TopCountrySelectEvent.topCountryChangeEvent());
+                }),
+          );
+        }),
+        const Divider(),
+        BlocBuilder<BottomCountrySelectBloc, BottomCountrySelectState>(
+            builder: (context, state) {
+          return Expanded(
+              child: CountryView(
+            country: state.country!,
+            onTap: () {
+              context
+                  .read<BottomCountrySelectBloc>()
+                  .add(const BottomCountrySelectEvent.bottomCountryChangeEvent());
+            },
+          ));
+        }),
       ],
     );
   }
