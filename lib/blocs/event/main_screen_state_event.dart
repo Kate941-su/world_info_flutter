@@ -6,6 +6,5 @@ part 'main_screen_state_event.freezed.dart';
 @freezed
 class MainScreenStateEvent with _$MainScreenStateEvent {
   const factory MainScreenStateEvent.screenStateChangeEvent(
-  {required MainScreenType screenType}
-      ) = _ScreenStateChangeEvent;
+      {required MainScreenType screenType}) = _ScreenStateChangeEvent;
 }

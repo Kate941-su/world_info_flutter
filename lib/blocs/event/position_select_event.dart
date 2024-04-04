@@ -4,9 +4,8 @@ part 'position_select_event.freezed.dart';
 
 @freezed
 class PositionSelectEvent with _$PositionSelectEvent {
-  const factory PositionSelectEvent({
-    required PositionSelect position
-}) = _PositionSelectEvent;
+  const factory PositionSelectEvent({required PositionSelect position}) =
+      _PositionSelectEvent;
 }
 
 @freezed

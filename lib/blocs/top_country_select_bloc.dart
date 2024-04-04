@@ -12,9 +12,8 @@ class TopCountrySelectBloc
             country: Country(code: CountryCode.UNTIL))) {
     on<TopCountrySelectEvent>((event, emit) {
       event.when(
-        topCountryChangeEvent: () {
-          print('TODO: topCountryChangeEvent');
-          return emit(state);
+        topCountryChangeEvent: (country) {
+          return emit(state.copyWith(country: country));
         },
       );
     });

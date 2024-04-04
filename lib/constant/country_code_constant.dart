@@ -1273,7 +1273,6 @@ enum CountryCode {
         return "Unknown";
     }
   }
-
 }
 
 const Map<String, String> countryMap = {

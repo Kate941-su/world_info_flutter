@@ -7,11 +7,9 @@ class MainScreenStateBloc extends Bloc<MainScreenStateEvent, MainScreenState> {
   MainScreenStateBloc()
       : super(const MainScreenState(screenType: MainScreenType.top())) {
     on<MainScreenStateEvent>((event, emit) {
-      event.when(
-        screenStateChangeEvent: (_) {
-          return emit(state.copyWith(screenType: event.screenType));
-        }
-      );
+      event.when(screenStateChangeEvent: (_) {
+        return emit(state.copyWith(screenType: event.screenType));
+      });
     });
   }
 }

@@ -3,7 +3,6 @@ import 'package:rate_converter_flutter/blocs/event/position_select_event.dart';
 
 part 'position_select_state.freezed.dart';
 
-
 @freezed
 class PositionSelectState with _$PositionSelectState {
   const factory PositionSelectState({

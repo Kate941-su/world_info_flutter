@@ -75,11 +75,8 @@ class _TopView extends StatelessWidget {
                       const PositionSelectEvent(
                           position: PositionSelect.top()));
                   context.read<MainScreenStateBloc>().add(
-                      const MainScreenStateEvent.screenStateChangeEvent(screenType: MainScreenType.select())
-                  );
-                  context
-                      .read<TopCountrySelectBloc>()
-                      .add(const TopCountrySelectEvent.topCountryChangeEvent());
+                      const MainScreenStateEvent.screenStateChangeEvent(
+                          screenType: MainScreenType.select()));
                 }),
           );
         }),
@@ -93,10 +90,8 @@ class _TopView extends StatelessWidget {
               context.read<PositionSelectBloc>().add(
                   const PositionSelectEvent(position: PositionSelect.bottom()));
               context.read<MainScreenStateBloc>().add(
-                const MainScreenStateEvent.screenStateChangeEvent(screenType: MainScreenType.select())
-              );
-              context.read<BottomCountrySelectBloc>().add(
-                  const BottomCountrySelectEvent.bottomCountryChangeEvent());
+                  const MainScreenStateEvent.screenStateChangeEvent(
+                      screenType: MainScreenType.select()));
             },
           ));
         }),

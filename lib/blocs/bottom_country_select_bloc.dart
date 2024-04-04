@@ -12,9 +12,9 @@ class BottomCountrySelectBloc
       : super(const BottomCountrySelectState(
             country: Country(code: CountryCode.UNTIL))) {
     on<BottomCountrySelectEvent>((event, emit) {
-      event.when(bottomCountryChangeEvent: () {
+      event.when(bottomCountryChangeEvent: (country) {
         print('TODO: bottomCountryChangeEvent');
-        return emit(state);
+        return emit(state.copyWith(country: country));
       });
     });
   }

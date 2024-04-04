@@ -7,6 +7,6 @@ part 'top_country_select_state.freezed.dart';
 @freezed
 class TopCountrySelectState with _$TopCountrySelectState {
   const factory TopCountrySelectState({
-     Country? country,
+    Country? country,
   }) = _TopCountrySelectState;
 }
