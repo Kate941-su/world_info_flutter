@@ -10,16 +10,16 @@ import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/state/main_screen_state.dart';
 import 'package:rate_converter_flutter/blocs/state/position_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
-import 'package:rate_converter_flutter/constant/country_code_constant.dart';
 import 'package:rate_converter_flutter/country_list.dart';
-import 'package:rate_converter_flutter/gen/assets.gen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../blocs/event/main_screen_state_event.dart';
 import '../models/country.dart';
 
 class CountryListView extends HookWidget {
-  CountryListView({super.key});
+  CountryListView({
+    super.key
+  });
 
   final list = List<String>.generate(20, (index) => "null");
 
@@ -34,45 +34,41 @@ class CountryListView extends HookWidget {
       textEditingController.text = searchFieldListenable.text;
     }, [searchFieldListenable]);
 
-    return BlocBuilder<MainScreenStateBloc, MainScreenState>(
-        builder: (context, state) {
-      return Scaffold(
-        appBar: AppBar(
-            backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-            title: TextField(
-              controller: textEditingController,
-              style: const TextStyle(color: Colors.white),
-              onChanged: (it) => {},
-              decoration: const InputDecoration(
-                  hintText: 'Country Name',
-                  hintStyle: TextStyle(
-                    color: Colors.white,
-                  ),
-                  fillColor: Colors.white,
-                  prefixIcon: Icon(
-                    Icons.search_rounded,
-                    color: Colors.white,
-                  )),
-            ),
-            actions: [
-              if (kDebugMode)
-                IconButton(
-                    onPressed: () {
-                      context.read<MainScreenStateBloc>().add(
-                          const MainScreenStateEvent.screenStateChangeEvent(
-                              screenType: MainScreenType.top()));
-                      print('state will be ${state.screenType}');
-                    },
-                    icon: const Icon(Icons.back_hand))
-            ]),
-        body: ListView.builder(
-          itemCount: countryList.length,
-          itemBuilder: (context, index) {
-            return CountryListTile(country: countryList[index]);
-          },
-        ),
-      );
-    });
+    return Scaffold(
+      appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          title: TextField(
+            controller: textEditingController,
+            style: const TextStyle(color: Colors.white),
+            onChanged: (it) => {},
+            decoration: const InputDecoration(
+                hintText: 'Country Name',
+                hintStyle: TextStyle(
+                  color: Colors.white,
+                ),
+                fillColor: Colors.white,
+                prefixIcon: Icon(
+                  Icons.search_rounded,
+                  color: Colors.white,
+                )),
+          ),
+          actions: [
+            if (kDebugMode)
+              IconButton(
+                  onPressed: () {
+                    context.read<MainScreenStateBloc>().add(
+                        const MainScreenStateEvent.screenStateChangeEvent(
+                            screenType: MainScreenType.top()));
+                  },
+                  icon: const Icon(Icons.back_hand))
+          ]),
+      body: ListView.builder(
+        itemCount: countryList.length,
+        itemBuilder: (context, index) {
+          return CountryListTile(country: countryList[index]);
+        },
+      ),
+    );
   }
 }
 

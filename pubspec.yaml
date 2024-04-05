@@ -33,7 +33,7 @@ dev_dependencies:
   flutter_lints: ^2.0.0
   flutter_gen_runner: ^5.4.0
   flutter_svg: ^2.0.10+1
-
+  unused_import_remover: ^1.0.1
 flutter_gen:
   output: lib/gen/
 
