@@ -1,7 +1,8 @@
-import 'package:flutter/cupertino.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:rate_converter_flutter/constant/country_code_constant.dart';
 import 'package:rate_converter_flutter/ui/country_page/color_text_button.dart';
+import 'package:rate_converter_flutter/ui/country_page/country_card.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../models/country.dart';
@@ -19,23 +20,7 @@ class CountryView extends StatelessWidget {
       return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          SimpleShadow(
-            opacity: 0.9,
-            offset: const Offset(5, 5),
-            sigma: 9,
-            child: country.code.image
-                .svg(width: country.code == CountryCode.UNTIL ? 140 : 240),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              country.code.name,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
-              ),
-            ),
-          ),
+          CountryCard(country: country, fontSize: 24, height: 140,),
           ColorTextButton(
               text: 'Select',
               textColor: Colors.white,

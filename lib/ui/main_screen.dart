@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -11,10 +10,12 @@ import 'package:rate_converter_flutter/blocs/state/bottom_country_select_state.d
 import 'package:rate_converter_flutter/blocs/state/top_country_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
 import 'package:rate_converter_flutter/constant/country_code_constant.dart';
+import 'package:rate_converter_flutter/main.dart';
 import 'package:rate_converter_flutter/models/country.dart';
-import 'package:rate_converter_flutter/ui/country_list_view.dart';
+import 'package:rate_converter_flutter/ui/country_list_page/country_list_view.dart';
 import 'package:rate_converter_flutter/ui/country_page/color_text_button.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_view.dart';
+import 'package:rate_converter_flutter/ui/result_page/result_page.dart';
 
 import '../blocs/state/main_screen_state.dart';
 
@@ -41,12 +42,13 @@ class MainScreen extends HookWidget {
       ],
       child: BlocBuilder<MainScreenStateBloc, MainScreenState>(
           builder: (context, state) {
-        return state.screenType == const MainScreenType.top()
-            ? TopViewScaffold(
-                isComparable: topCountryCode.value != CountryCode.UNTIL &&
-                    bottomCountryCode.value != CountryCode.UNTIL,
-              )
-            : CountryListView();
+        // return state.screenType == const MainScreenType.top()
+        //     ? TopViewScaffold(
+        //         isComparable: topCountryCode.value != CountryCode.UNTIL &&
+        //             bottomCountryCode.value != CountryCode.UNTIL,
+        //       )
+        //     : CountryListView(countryList: originalCountryList);
+            return ResultPage();
       }),
     );
   }
@@ -89,6 +91,7 @@ class _TopView extends HookWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -105,7 +108,7 @@ class _TopView extends HookWidget {
                           screenType: MainScreenType.select()));
                 });
           }),
-          Divider(),
+          const Divider(),
           BlocBuilder<BottomCountrySelectBloc, BottomCountrySelectState>(
               builder: (context, state) {
             return CountryView(
@@ -120,7 +123,7 @@ class _TopView extends HookWidget {
               },
             );
           }),
-          Divider(),
+          const Divider(),
           ColorTextButton(
               text: 'Compare',
               textColor: Colors.white,

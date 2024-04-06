@@ -10,18 +10,16 @@ import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/state/main_screen_state.dart';
 import 'package:rate_converter_flutter/blocs/state/position_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
-import 'package:rate_converter_flutter/country_list.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:simple_shadow/simple_shadow.dart';
 
-import '../blocs/event/main_screen_state_event.dart';
-import '../models/country.dart';
+import '../../blocs/event/main_screen_state_event.dart';
+import '../../models/country.dart';
 
 class CountryListView extends HookWidget {
-  CountryListView({
-    super.key
-  });
+  const CountryListView({required this.countryList, super.key});
 
-  final list = List<String>.generate(20, (index) => "null");
+  final List<Country> countryList;
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +27,16 @@ class CountryListView extends HookWidget {
         useTextEditingController.fromValue(TextEditingValue.empty);
 
     final searchFieldListenable = useValueListenable(textEditingController);
+    final stateCountryList = useState<List<Country>>(countryList);
 
     useEffect(() {
       textEditingController.text = searchFieldListenable.text;
+      stateCountryList.value = countryList
+          .where((it) => it.code.name
+              .toLowerCase()
+              .contains(textEditingController.text.toLowerCase()))
+          .toList(growable: false);
+      return null;
     }, [searchFieldListenable]);
 
     return Scaffold(
@@ -62,10 +67,13 @@ class CountryListView extends HookWidget {
                   },
                   icon: const Icon(Icons.back_hand))
           ]),
-      body: ListView.builder(
-        itemCount: countryList.length,
+      body: ListView.separated(
+        itemCount: stateCountryList.value.length,
         itemBuilder: (context, index) {
-          return CountryListTile(country: countryList[index]);
+          return CountryListTile(country: stateCountryList.value[index]);
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return const Divider();
         },
       ),
     );
@@ -99,10 +107,15 @@ class CountryListTile extends StatelessWidget {
                   screenType: MainScreenType.top()));
         },
         child: ListTile(
-            leading: SizedBox(
-                width: 36,
-                height: 24,
-                child: SvgPicture.asset(country.code.image.path)),
+            leading: SimpleShadow(
+              opacity: 0.9,
+              offset: const Offset(5, 5),
+              sigma: 5,
+              child: SizedBox(
+                  width: 36,
+                  height: 24,
+                  child: SvgPicture.asset(country.code.image.path)),
+            ),
             title: Text(country.code.name),
             trailing: IconButton(
               icon: Icon(
