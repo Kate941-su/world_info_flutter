@@ -2,7 +2,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rate_converter_flutter/models/country.dart';
 import 'package:simple_shadow/simple_shadow.dart';
-import 'package:rate_converter_flutter/constant/country_code_constant.dart';
 
 class CountryCard extends StatelessWidget {
   const CountryCard(

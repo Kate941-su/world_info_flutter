@@ -1,9 +1,6 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:rate_converter_flutter/constant/country_code_constant.dart';
 import 'package:rate_converter_flutter/ui/country_page/color_text_button.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_card.dart';
-import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../models/country.dart';
 

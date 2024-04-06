@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:go_router/go_router.dart';
+import 'package:rate_converter_flutter/Route/router.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/event/main_screen_state_event.dart';
 import 'package:rate_converter_flutter/blocs/event/position_select_event.dart';
@@ -24,10 +26,17 @@ class MainScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final topCountryCode =
+    var topCountryCode = useState(const Country(code: CountryCode.UNTIL).code);
+    var bottomCountryCode =
         useState(const Country(code: CountryCode.UNTIL).code);
-    final bottomCountryCode =
-        useState(const Country(code: CountryCode.UNTIL).code);
+
+    useEffect(() {
+      topCountryCode.value =
+          context.read<TopCountrySelectBloc>().state.country!.code;
+      bottomCountryCode.value =
+          context.read<BottomCountrySelectBloc>().state.country!.code;
+      return null;
+    }, []);
 
     return MultiBlocListener(
       listeners: [
@@ -42,13 +51,13 @@ class MainScreen extends HookWidget {
       ],
       child: BlocBuilder<MainScreenStateBloc, MainScreenState>(
           builder: (context, state) {
-        // return state.screenType == const MainScreenType.top()
-        //     ? TopViewScaffold(
-        //         isComparable: topCountryCode.value != CountryCode.UNTIL &&
-        //             bottomCountryCode.value != CountryCode.UNTIL,
-        //       )
-        //     : CountryListView(countryList: originalCountryList);
-            return ResultPage();
+        return state.screenType == const MainScreenType.top()
+            ? TopViewScaffold(
+                isComparable: topCountryCode.value != CountryCode.UNTIL &&
+                    bottomCountryCode.value != CountryCode.UNTIL,
+              )
+            : CountryListView(countryList: originalCountryList);
+        return ResultPage();
       }),
     );
   }
@@ -130,7 +139,7 @@ class _TopView extends HookWidget {
               buttonColor: isComparable ? Colors.red : Colors.grey,
               onTap: () {
                 isComparable
-                    ? print("Next Screen")
+                    ? context.go(AppPages.result.path)
                     : print("Toast 'Please choose 2 countries'");
               }),
         ],

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rate_converter_flutter/Route/router.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/resources/country_attributes_repository.dart';
@@ -10,8 +11,6 @@ import 'blocs/main_screen_state_bloc.dart';
 import 'blocs/top_country_select_bloc.dart';
 import 'constant/country_code_constant.dart';
 import 'models/country.dart';
-
-
 
 final originalCountryList = List.generate(CountryCode.values.length,
         (index) => Country(code: CountryCode.values[index], isFavorite: false))
@@ -47,22 +46,20 @@ class MyApp extends StatelessWidget {
             BlocProvider<PositionSelectBloc>(
                 create: (context) => PositionSelectBloc()),
           ],
-          child: MaterialApp(
+          child: MaterialApp.router(
             title: 'Flutter Demo',
+            routerConfig: AppRouter.goRouter,
             theme: ThemeData(
               colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
               useMaterial3: true,
             ),
-            home: const MyHomePage(title: 'Flutter Demo Home Page'),
           )),
     );
   }
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
