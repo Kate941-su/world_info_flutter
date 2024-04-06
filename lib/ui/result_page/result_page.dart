@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:rate_converter_flutter/constant/country_code_constant.dart';
+import 'package:rate_converter_flutter/dummy_map/mock_reponse.dart';
 import 'package:rate_converter_flutter/models/country.dart';
+import 'package:rate_converter_flutter/models/country_attributes.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_card.dart';
 import 'package:rate_converter_flutter/ui/result_page/country_attributes_view.dart';
 const leftCountry = Country(code: CountryCode.US);
 const rightCountry = Country(code: CountryCode.CN);
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({super.key});
+  ResultPage({super.key});
+
+  final leftAttr = CountryAttributes.fromJson(mockUSResponse);
+  final rightAttr = CountryAttributes.fromJson(mockCNResponse);
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +26,7 @@ class ResultPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            CountryAttributesView(country: leftCountry),
-            
+            CountryAttributesView(country: leftCountry, countryAttr: leftAttr,),
             const VerticalDivider(
               width: 20,
               thickness: 1,
@@ -30,7 +34,7 @@ class ResultPage extends StatelessWidget {
               endIndent: 0,
               color: Colors.black54,
             ),
-            CountryCard(country: rightCountry, fontSize: 12, height: 60, cardWidth: 160,),
+            CountryAttributesView(country: rightCountry, countryAttr: rightAttr,),
           ],
         ),
       ),

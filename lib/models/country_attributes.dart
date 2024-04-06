@@ -23,7 +23,7 @@ abstract class CountryAttributes with _$CountryAttributes {
     @JsonKey(name: 'co2_emissions')required double co2Emissions,
     @JsonKey(name: 'forested_area')required double forestedArea,
     @JsonKey(name: 'gdp_per_capita')required double gdpPerCapita,
-    @JsonKey(name: 'employment_agriculture')required String employmentAgriculture,
+    @JsonKey(name: 'employment_agriculture')required double employmentAgriculture,
     required double exports,
     @JsonKey(name: 'infant_mortality')required double infantMortality,
     @JsonKey(name: 'threatened_species')required double threatenedSpecies,

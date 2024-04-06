@@ -25,7 +25,7 @@ _$CountryAttributesImpl _$$CountryAttributesImplFromJson(
       co2Emissions: (json['co2_emissions'] as num).toDouble(),
       forestedArea: (json['forested_area'] as num).toDouble(),
       gdpPerCapita: (json['gdp_per_capita'] as num).toDouble(),
-      employmentAgriculture: json['employment_agriculture'] as String,
+      employmentAgriculture: (json['employment_agriculture'] as num).toDouble(),
       exports: (json['exports'] as num).toDouble(),
       infantMortality: (json['infant_mortality'] as num).toDouble(),
       threatenedSpecies: (json['threatened_species'] as num).toDouble(),
