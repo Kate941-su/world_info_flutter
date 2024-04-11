@@ -11,6 +11,7 @@ import 'package:rate_converter_flutter/blocs/state/main_screen_state.dart';
 import 'package:rate_converter_flutter/blocs/state/position_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:rate_converter_flutter/constant/app_color.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../blocs/event/main_screen_state_event.dart';
@@ -41,7 +42,7 @@ class CountryListView extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+          backgroundColor: AppColor.appBar,
           title: TextField(
             controller: textEditingController,
             style: const TextStyle(color: Colors.white),

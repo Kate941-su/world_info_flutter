@@ -9,13 +9,13 @@ enum CountryCode {
   AL('AL'),
   AM('AM'),
   AO('AO'),
-  AQ('AQ'),
+  // AQ('AQ'),
   AR('AR'),
   AS('AS'),
   AT('AT'),
   AU('AU'),
   AW('AW'),
-  AX('AX'),
+  // AX('AX'),
   AZ('AZ'),
   BA('BA'),
   BB('BB'),
@@ -26,7 +26,7 @@ enum CountryCode {
   BH('BH'),
   BI('BI'),
   BJ('BJ'),
-  BL('BL'),
+  // BL('BL'),
   BM('BM'),
   BN('BN'),
   BO('BO'),
@@ -34,12 +34,12 @@ enum CountryCode {
   BR('BR'),
   BS('BS'),
   BT('BT'),
-  BV('BV'),
+  // BV('BV'),
   BW('BW'),
   BY('BY'),
   BZ('BZ'),
   CA('CA'),
-  CC('CC'),
+  // CC('CC'),
   CD('CD'),
   CF('CF'),
   CG('CG'),
@@ -54,7 +54,7 @@ enum CountryCode {
   CU('CU'),
   CV('CV'),
   CW('CW'),
-  CX('CX'),
+  // CX('CX'),
   CY('CY'),
   CZ('CZ'),
   DE('DE'),
@@ -81,7 +81,7 @@ enum CountryCode {
   GD('GD'),
   GE('GE'),
   GF('GF'),
-  GG('GG'),
+  // GG('GG'),
   GH('GH'),
   GI('GI'),
   GL('GL'),
@@ -90,13 +90,13 @@ enum CountryCode {
   GP('GP'),
   GQ('GQ'),
   GR('GR'),
-  GS('GS'),
+  // GS('GS'),
   GT('GT'),
   GU('GU'),
   GW('GW'),
   GY('GY'),
   HK('HK'),
-  HM('HM'),
+  // HM('HM'),
   HN('HN'),
   HR('HR'),
   HT('HT'),
@@ -106,12 +106,12 @@ enum CountryCode {
   IL('IL'),
   IM('IM'),
   IN('IN'),
-  IO('IO'),
+  // IO('IO'),
   IQ('IQ'),
   IR('IR'),
   IS('IS'),
   IT('IT'),
-  JE('JE'),
+  // JE('JE'),
   JM('JM'),
   JO('JO'),
   JP('JP'),
@@ -141,7 +141,7 @@ enum CountryCode {
   MC('MC'),
   MD('MD'),
   ME('ME'),
-  MF('MF'),
+  // MF('MF'),
   MG('MG'),
   MH('MH'),
   MK('MK'),
@@ -163,7 +163,7 @@ enum CountryCode {
   NA('NA'),
   NC('NC'),
   NE('NE'),
-  NF('NF'),
+  // NF('NF'),
   NG('NG'),
   NI('NI'),
   NL('NL'),
@@ -181,9 +181,9 @@ enum CountryCode {
   PK('PK'),
   PL('PL'),
   PM('PM'),
-  PN('PN'),
+  // PN('PN'),
   PR('PR'),
-  PS('PS'),
+  // PS('PS'),
   PT('PT'),
   PW('PW'),
   PY('PY'),
@@ -201,7 +201,7 @@ enum CountryCode {
   SG('SG'),
   SH('SH'),
   SI('SI'),
-  SJ('SJ'),
+  // SJ('SJ'),
   SK('SK'),
   SL('SL'),
   SM('SM'),
@@ -216,7 +216,7 @@ enum CountryCode {
   SZ('SZ'),
   TC('TC'),
   TD('TD'),
-  TF('TF'),
+  // TF('TF'),
   TG('TG'),
   TH('TH'),
   TJ('TJ'),
@@ -228,11 +228,11 @@ enum CountryCode {
   TR('TR'),
   TT('TT'),
   TV('TV'),
-  TW('TW'),
+  // TW('TW'),
   TZ('TZ'),
   UA('UA'),
   UG('UG'),
-  UM('UM'),
+  // UM('UM'),
   US('US'),
   UY('UY'),
   UZ('UZ'),
@@ -245,7 +245,7 @@ enum CountryCode {
   VU('VU'),
   WF('WF'),
   WS('WS'),
-  XK('XK'),
+  // XK('XK'),
   YE('YE'),
   YT('YT'),
   ZA('ZA'),
@@ -275,8 +275,8 @@ enum CountryCode {
         return Assets.icons.svg.am;
       case CountryCode.AO:
         return Assets.icons.svg.ao;
-      case CountryCode.AQ:
-        return Assets.icons.svg.aq;
+      // case CountryCode.AQ:
+      //   return Assets.icons.svg.aq;
       case CountryCode.AR:
         return Assets.icons.svg.ar;
       case CountryCode.AS:
@@ -287,8 +287,8 @@ enum CountryCode {
         return Assets.icons.svg.au;
       case CountryCode.AW:
         return Assets.icons.svg.aw;
-      case CountryCode.AX:
-        return Assets.icons.svg.ax;
+      // case CountryCode.AX:
+      //   return Assets.icons.svg.ax;
       case CountryCode.AZ:
         return Assets.icons.svg.az;
       case CountryCode.BA:
@@ -309,8 +309,8 @@ enum CountryCode {
         return Assets.icons.svg.bi;
       case CountryCode.BJ:
         return Assets.icons.svg.bj;
-      case CountryCode.BL:
-        return Assets.icons.svg.bl;
+      // case CountryCode.BL:
+      //   return Assets.icons.svg.bl;
       case CountryCode.BM:
         return Assets.icons.svg.bm;
       case CountryCode.BN:
@@ -325,8 +325,8 @@ enum CountryCode {
         return Assets.icons.svg.bs;
       case CountryCode.BT:
         return Assets.icons.svg.bt;
-      case CountryCode.BV:
-        return Assets.icons.svg.bv;
+      // case CountryCode.BV:
+      //   return Assets.icons.svg.bv;
       case CountryCode.BW:
         return Assets.icons.svg.bw;
       case CountryCode.BY:
@@ -335,8 +335,8 @@ enum CountryCode {
         return Assets.icons.svg.bz;
       case CountryCode.CA:
         return Assets.icons.svg.ca;
-      case CountryCode.CC:
-        return Assets.icons.svg.cc;
+      // case CountryCode.CC:
+      //   return Assets.icons.svg.cc;
       case CountryCode.CD:
         return Assets.icons.svg.cd;
       case CountryCode.CF:
@@ -365,8 +365,8 @@ enum CountryCode {
         return Assets.icons.svg.cv;
       case CountryCode.CW:
         return Assets.icons.svg.cw;
-      case CountryCode.CX:
-        return Assets.icons.svg.cx;
+      // case CountryCode.CX:
+      //   return Assets.icons.svg.cx;
       case CountryCode.CY:
         return Assets.icons.svg.cy;
       case CountryCode.CZ:
@@ -419,8 +419,8 @@ enum CountryCode {
         return Assets.icons.svg.ge;
       case CountryCode.GF:
         return Assets.icons.svg.gf;
-      case CountryCode.GG:
-        return Assets.icons.svg.gg;
+      // case CountryCode.GG:
+      //   return Assets.icons.svg.gg;
       case CountryCode.GH:
         return Assets.icons.svg.gh;
       case CountryCode.GI:
@@ -437,8 +437,8 @@ enum CountryCode {
         return Assets.icons.svg.gq;
       case CountryCode.GR:
         return Assets.icons.svg.gr;
-      case CountryCode.GS:
-        return Assets.icons.svg.gs;
+      // case CountryCode.GS:
+      //   return Assets.icons.svg.gs;
       case CountryCode.GT:
         return Assets.icons.svg.gt;
       case CountryCode.GU:
@@ -449,8 +449,8 @@ enum CountryCode {
         return Assets.icons.svg.gy;
       case CountryCode.HK:
         return Assets.icons.svg.hk;
-      case CountryCode.HM:
-        return Assets.icons.svg.hm;
+      // case CountryCode.HM:
+      //   return Assets.icons.svg.hm;
       case CountryCode.HN:
         return Assets.icons.svg.hn;
       case CountryCode.HR:
@@ -469,8 +469,8 @@ enum CountryCode {
         return Assets.icons.svg.im;
       case CountryCode.IN:
         return Assets.icons.svg.ind;
-      case CountryCode.IO:
-        return Assets.icons.svg.io;
+      // case CountryCode.IO:
+      //   return Assets.icons.svg.io;
       case CountryCode.IQ:
         return Assets.icons.svg.iq;
       case CountryCode.IR:
@@ -479,8 +479,8 @@ enum CountryCode {
         return Assets.icons.svg.isl;
       case CountryCode.IT:
         return Assets.icons.svg.it;
-      case CountryCode.JE:
-        return Assets.icons.svg.je;
+      // case CountryCode.JE:
+      //   return Assets.icons.svg.je;
       case CountryCode.JM:
         return Assets.icons.svg.jm;
       case CountryCode.JO:
@@ -539,8 +539,8 @@ enum CountryCode {
         return Assets.icons.svg.md;
       case CountryCode.ME:
         return Assets.icons.svg.me;
-      case CountryCode.MF:
-        return Assets.icons.svg.mf;
+      // case CountryCode.MF:
+      //   return Assets.icons.svg.mf;
       case CountryCode.MG:
         return Assets.icons.svg.mg;
       case CountryCode.MH:
@@ -583,8 +583,8 @@ enum CountryCode {
         return Assets.icons.svg.nc;
       case CountryCode.NE:
         return Assets.icons.svg.ne;
-      case CountryCode.NF:
-        return Assets.icons.svg.nf;
+      // case CountryCode.NF:
+      //   return Assets.icons.svg.nf;
       case CountryCode.NG:
         return Assets.icons.svg.ng;
       case CountryCode.NI:
@@ -619,12 +619,12 @@ enum CountryCode {
         return Assets.icons.svg.pl;
       case CountryCode.PM:
         return Assets.icons.svg.pm;
-      case CountryCode.PN:
-        return Assets.icons.svg.pn;
+      // case CountryCode.PN:
+      //   return Assets.icons.svg.pn;
       case CountryCode.PR:
         return Assets.icons.svg.pr;
-      case CountryCode.PS:
-        return Assets.icons.svg.ps;
+      // case CountryCode.PS:
+      //   return Assets.icons.svg.ps;
       case CountryCode.PT:
         return Assets.icons.svg.pt;
       case CountryCode.PW:
@@ -659,8 +659,8 @@ enum CountryCode {
         return Assets.icons.svg.sh;
       case CountryCode.SI:
         return Assets.icons.svg.si;
-      case CountryCode.SJ:
-        return Assets.icons.svg.sj;
+      // case CountryCode.SJ:
+      //   return Assets.icons.svg.sj;
       case CountryCode.SK:
         return Assets.icons.svg.sk;
       case CountryCode.SL:
@@ -689,8 +689,8 @@ enum CountryCode {
         return Assets.icons.svg.tc;
       case CountryCode.TD:
         return Assets.icons.svg.td;
-      case CountryCode.TF:
-        return Assets.icons.svg.tf;
+      // case CountryCode.TF:
+      //   return Assets.icons.svg.tf;
       case CountryCode.TG:
         return Assets.icons.svg.tg;
       case CountryCode.TH:
@@ -713,16 +713,16 @@ enum CountryCode {
         return Assets.icons.svg.tt;
       case CountryCode.TV:
         return Assets.icons.svg.tv;
-      case CountryCode.TW:
-        return Assets.icons.svg.tw;
+      // case CountryCode.TW:
+      //   return Assets.icons.svg.tw;
       case CountryCode.TZ:
         return Assets.icons.svg.tz;
       case CountryCode.UA:
         return Assets.icons.svg.ua;
       case CountryCode.UG:
         return Assets.icons.svg.ug;
-      case CountryCode.UM:
-        return Assets.icons.svg.um;
+      // case CountryCode.UM:
+      //   return Assets.icons.svg.um;
       case CountryCode.US:
         return Assets.icons.svg.us;
       case CountryCode.UY:
@@ -747,8 +747,8 @@ enum CountryCode {
         return Assets.icons.svg.wf;
       case CountryCode.WS:
         return Assets.icons.svg.ws;
-      case CountryCode.XK:
-        return Assets.icons.svg.xk;
+      // case CountryCode.XK:
+      //   return Assets.icons.svg.xk;
       case CountryCode.YE:
         return Assets.icons.svg.ye;
       case CountryCode.YT:
@@ -782,8 +782,8 @@ enum CountryCode {
         return "Armenia";
       case CountryCode.AO:
         return "Angola";
-      case CountryCode.AQ:
-        return "Antarctica";
+      // case CountryCode.AQ:
+      //   return "Antarctica";
       case CountryCode.AR:
         return "Argentina";
       case CountryCode.AS:
@@ -794,8 +794,8 @@ enum CountryCode {
         return "Australia";
       case CountryCode.AW:
         return "Aruba";
-      case CountryCode.AX:
-        return "\u00c5land Islands";
+      // case CountryCode.AX:
+      //   return "\u00c5land Islands";
       case CountryCode.AZ:
         return "Azerbaijan";
       case CountryCode.BA:
@@ -816,8 +816,8 @@ enum CountryCode {
         return "Burundi";
       case CountryCode.BJ:
         return "Benin";
-      case CountryCode.BL:
-        return "Saint Barthélemy";
+      // case CountryCode.BL:
+      //   return "Saint Barthélemy";
       case CountryCode.BM:
         return "Bermuda";
       case CountryCode.BN:
@@ -832,8 +832,8 @@ enum CountryCode {
         return "Bahamas";
       case CountryCode.BT:
         return "Bhutan";
-      case CountryCode.BV:
-        return "Bouvet Island";
+      // case CountryCode.BV:
+      //   return "Bouvet Island";
       case CountryCode.BW:
         return "Botswana";
       case CountryCode.BY:
@@ -842,8 +842,8 @@ enum CountryCode {
         return "Belize";
       case CountryCode.CA:
         return "Canada";
-      case CountryCode.CC:
-        return "Cocos (Keeling) Islands";
+      // case CountryCode.CC:
+      //   return "Cocos (Keeling) Islands";
       case CountryCode.CD:
         return "Congo, the Democratic Republic of the";
       case CountryCode.CF:
@@ -872,8 +872,8 @@ enum CountryCode {
         return "Cape Verde";
       case CountryCode.CW:
         return "Cura\u00e7ao";
-      case CountryCode.CX:
-        return "Christmas Island";
+      // case CountryCode.CX:
+      //   return "Christmas Island";
       case CountryCode.CY:
         return "Cyprus";
       case CountryCode.CZ:
@@ -926,8 +926,8 @@ enum CountryCode {
         return "Georgia";
       case CountryCode.GF:
         return "French Guiana";
-      case CountryCode.GG:
-        return "Guernsey";
+      // case CountryCode.GG:
+      //   return "Guernsey";
       case CountryCode.GH:
         return "Ghana";
       case CountryCode.GI:
@@ -944,8 +944,8 @@ enum CountryCode {
         return "Equatorial Guinea";
       case CountryCode.GR:
         return "Greece";
-      case CountryCode.GS:
-        return "South Georgia and the South Sandwich Islands";
+      // case CountryCode.GS:
+      //   return "South Georgia and the South Sandwich Islands";
       case CountryCode.GT:
         return "Guatemala";
       case CountryCode.GU:
@@ -956,8 +956,8 @@ enum CountryCode {
         return "Guyana";
       case CountryCode.HK:
         return "Hong Kong";
-      case CountryCode.HM:
-        return "Heard Island and McDonald Islands";
+      // case CountryCode.HM:
+      //   return "Heard Island and McDonald Islands";
       case CountryCode.HN:
         return "Honduras";
       case CountryCode.HR:
@@ -976,8 +976,8 @@ enum CountryCode {
         return "Isle of Man";
       case CountryCode.IN:
         return "India";
-      case CountryCode.IO:
-        return "British Indian Ocean Territory";
+      // case CountryCode.IO:
+      //   return "British Indian Ocean Territory";
       case CountryCode.IQ:
         return "Iraq";
       case CountryCode.IR:
@@ -986,8 +986,8 @@ enum CountryCode {
         return "Iceland";
       case CountryCode.IT:
         return "Italy";
-      case CountryCode.JE:
-        return "Jersey";
+      // case CountryCode.JE:
+      //   return "Jersey";
       case CountryCode.JM:
         return "Jamaica";
       case CountryCode.JO:
@@ -1046,8 +1046,8 @@ enum CountryCode {
         return "Moldova, Republic of";
       case CountryCode.ME:
         return "Montenegro";
-      case CountryCode.MF:
-        return "Saint Martin";
+      // case CountryCode.MF:
+      //   return "Saint Martin";
       case CountryCode.MG:
         return "Madagascar";
       case CountryCode.MH:
@@ -1090,8 +1090,8 @@ enum CountryCode {
         return "New Caledonia";
       case CountryCode.NE:
         return "Niger";
-      case CountryCode.NF:
-        return "Norfolk Island";
+      // case CountryCode.NF:
+      //   return "Norfolk Island";
       case CountryCode.NG:
         return "Nigeria";
       case CountryCode.NI:
@@ -1126,12 +1126,12 @@ enum CountryCode {
         return "Poland";
       case CountryCode.PM:
         return "Saint Pierre and Miquelon";
-      case CountryCode.PN:
-        return "Pitcairn";
+      // case CountryCode.PN:
+      //   return "Pitcairn";
       case CountryCode.PR:
         return "Puerto Rico";
-      case CountryCode.PS:
-        return "Palestine";
+      // case CountryCode.PS:
+      //   return "Palestine";
       case CountryCode.PT:
         return "Portugal";
       case CountryCode.PW:
@@ -1166,8 +1166,8 @@ enum CountryCode {
         return "Saint Helena, Ascension and Tristan da Cunha";
       case CountryCode.SI:
         return "Slovenia";
-      case CountryCode.SJ:
-        return "Svalbard and Jan Mayen Islands";
+      // case CountryCode.SJ:
+      //   return "Svalbard and Jan Mayen Islands";
       case CountryCode.SK:
         return "Slovakia";
       case CountryCode.SL:
@@ -1196,8 +1196,8 @@ enum CountryCode {
         return "Turks and Caicos Islands";
       case CountryCode.TD:
         return "Chad";
-      case CountryCode.TF:
-        return "French Southern Territories";
+      // case CountryCode.TF:
+      //   return "French Southern Territories";
       case CountryCode.TG:
         return "Togo";
       case CountryCode.TH:
@@ -1220,16 +1220,16 @@ enum CountryCode {
         return "Trinidad and Tobago";
       case CountryCode.TV:
         return "Tuvalu";
-      case CountryCode.TW:
-        return "Taiwan (Republic of China)";
+      // case CountryCode.TW:
+      //   return "Taiwan (Republic of China)";
       case CountryCode.TZ:
         return "Tanzania, United Republic of";
       case CountryCode.UA:
         return "Ukraine";
       case CountryCode.UG:
         return "Uganda";
-      case CountryCode.UM:
-        return "US Minor Outlying Islands";
+      // case CountryCode.UM:
+      //   return "US Minor Outlying Islands";
       case CountryCode.US:
         return "United States";
       case CountryCode.UY:
@@ -1254,8 +1254,8 @@ enum CountryCode {
         return "Wallis and Futuna Islands";
       case CountryCode.WS:
         return "Samoa";
-      case CountryCode.XK:
-        return "Kosovo";
+      // case CountryCode.XK:
+      //   return "Kosovo";
       case CountryCode.YE:
         return "Yemen";
       case CountryCode.YT:

@@ -11,15 +11,19 @@ import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/state/bottom_country_select_state.dart';
 import 'package:rate_converter_flutter/blocs/state/top_country_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
+import 'package:rate_converter_flutter/constant/app_color.dart';
 import 'package:rate_converter_flutter/constant/country_code_constant.dart';
 import 'package:rate_converter_flutter/main.dart';
 import 'package:rate_converter_flutter/models/country.dart';
+import 'package:rate_converter_flutter/models/country_attributes.dart';
+import 'package:rate_converter_flutter/resources/country_attributes_repository.dart';
 import 'package:rate_converter_flutter/ui/country_list_page/country_list_view.dart';
 import 'package:rate_converter_flutter/ui/country_page/color_text_button.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_view.dart';
 import 'package:rate_converter_flutter/ui/result_page/result_page.dart';
 
 import '../blocs/state/main_screen_state.dart';
+import '../resources/country_attributes_repository_impl.dart';
 
 class MainScreen extends HookWidget {
   const MainScreen({super.key});
@@ -71,19 +75,9 @@ class TopViewScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text('Main Menu'),
-          actions: [
-            IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {
-                  // TODO: Transition with animation.
-                  context.read<MainScreenStateBloc>().add(
-                      const MainScreenStateEvent.screenStateChangeEvent(
-                          screenType: MainScreenType.select()));
-                }),
-          ]),
+      appBar: AppBar(backgroundColor: AppColor.appBar, actions: [
+        IconButton(icon: const Icon(Icons.info_outline), onPressed: () {}),
+      ]),
       body: _TopView(
         isComparable: isComparable,
       ),
@@ -137,9 +131,37 @@ class _TopView extends HookWidget {
               text: 'Compare',
               textColor: Colors.white,
               buttonColor: isComparable ? Colors.red : Colors.grey,
-              onTap: () {
+              onTap: () async {
                 isComparable
-                    ? context.go(AppPages.result.path)
+                    ? () async {
+                        final topCountryCode = context
+                            .read<TopCountrySelectBloc>()
+                            .state
+                            .country
+                            ?.code;
+                        final bottomCountryCode = context
+                            .read<BottomCountrySelectBloc>()
+                            .state
+                            .country
+                            ?.code;
+                        List<CountryAttributes>? a;
+                        if (topCountryCode != null &&
+                            bottomCountryCode != null) {
+                          a = await Future.wait([
+                            context
+                                .read<CountryAttributesRepository>()
+                                .getAttribute(topCountryCode),
+                            context
+                                .read<CountryAttributesRepository>()
+                                .getAttribute(bottomCountryCode),
+                          ]);
+                        }
+                        print(a);
+
+                        if (context.mounted) {
+                          context.go(AppPages.result.path);
+                        }
+                      }()
                     : print("Toast 'Please choose 2 countries'");
               }),
         ],

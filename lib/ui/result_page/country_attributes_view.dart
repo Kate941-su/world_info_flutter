@@ -26,18 +26,18 @@ class CountryAttributesView extends StatelessWidget {
           children: [
             _CountryAttributeUnit(
               title: 'Region',
-              leftAttr: leftCountryAttr.region,
-              rightAttr: rightCountryAttr.region,
+              leftAttr: leftCountryAttr.region!,
+              rightAttr: rightCountryAttr.region!,
             ),
             _CountryAttributeUnit(
               title: 'Capital',
-              leftAttr: leftCountryAttr.capital,
-              rightAttr: rightCountryAttr.capital,
+              leftAttr: leftCountryAttr.capital!,
+              rightAttr: rightCountryAttr.capital!,
             ),
             _CountryAttributeUnit(
               title: 'Currency',
-              leftAttr: leftCountryAttr.currency.name,
-              rightAttr: rightCountryAttr.currency.name,
+              leftAttr: leftCountryAttr.currency!.name,
+              rightAttr: rightCountryAttr.currency!.name,
             ),
             _CountryAttributeUnit(
               title: 'Surface Area(k㎡)',

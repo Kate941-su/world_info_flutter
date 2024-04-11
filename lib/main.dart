@@ -3,6 +3,7 @@ import 'package:rate_converter_flutter/Route/router.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/resources/country_attributes_repository.dart';
+import 'package:rate_converter_flutter/resources/country_attributes_repository_impl.dart';
 import 'package:rate_converter_flutter/resources/mocked_country_attributes_repository.dart';
 import 'package:rate_converter_flutter/ui/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider<CountryAttributesRepository>(
-          create: (context) => MockedCountryAttributesRepository(),
+          create: (context) => CountryAttributesRepositoryImpl(),
         )
       ],
       child: MultiBlocProvider(
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
             title: 'Flutter Demo',
             routerConfig: AppRouter.goRouter,
             theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
               useMaterial3: true,
             ),
           )),
