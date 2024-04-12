@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$Country {
   CountryCode get code => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
+  CountryAttributes? get attributes => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CountryCopyWith<Country> get copyWith => throw _privateConstructorUsedError;
@@ -28,7 +29,9 @@ abstract class $CountryCopyWith<$Res> {
   factory $CountryCopyWith(Country value, $Res Function(Country) then) =
       _$CountryCopyWithImpl<$Res, Country>;
   @useResult
-  $Res call({CountryCode code, bool isFavorite});
+  $Res call({CountryCode code, bool isFavorite, CountryAttributes? attributes});
+
+  $CountryAttributesCopyWith<$Res>? get attributes;
 }
 
 /// @nodoc
@@ -46,6 +49,7 @@ class _$CountryCopyWithImpl<$Res, $Val extends Country>
   $Res call({
     Object? code = null,
     Object? isFavorite = null,
+    Object? attributes = freezed,
   }) {
     return _then(_value.copyWith(
       code: null == code
@@ -56,7 +60,23 @@ class _$CountryCopyWithImpl<$Res, $Val extends Country>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
+      attributes: freezed == attributes
+          ? _value.attributes
+          : attributes // ignore: cast_nullable_to_non_nullable
+              as CountryAttributes?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CountryAttributesCopyWith<$Res>? get attributes {
+    if (_value.attributes == null) {
+      return null;
+    }
+
+    return $CountryAttributesCopyWith<$Res>(_value.attributes!, (value) {
+      return _then(_value.copyWith(attributes: value) as $Val);
+    });
   }
 }
 
@@ -67,7 +87,10 @@ abstract class _$$CountryImplCopyWith<$Res> implements $CountryCopyWith<$Res> {
       __$$CountryImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({CountryCode code, bool isFavorite});
+  $Res call({CountryCode code, bool isFavorite, CountryAttributes? attributes});
+
+  @override
+  $CountryAttributesCopyWith<$Res>? get attributes;
 }
 
 /// @nodoc
@@ -83,6 +106,7 @@ class __$$CountryImplCopyWithImpl<$Res>
   $Res call({
     Object? code = null,
     Object? isFavorite = null,
+    Object? attributes = freezed,
   }) {
     return _then(_$CountryImpl(
       code: null == code
@@ -93,6 +117,10 @@ class __$$CountryImplCopyWithImpl<$Res>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
+      attributes: freezed == attributes
+          ? _value.attributes
+          : attributes // ignore: cast_nullable_to_non_nullable
+              as CountryAttributes?,
     ));
   }
 }
@@ -100,17 +128,20 @@ class __$$CountryImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$CountryImpl implements _Country {
-  const _$CountryImpl({required this.code, this.isFavorite = false});
+  const _$CountryImpl(
+      {required this.code, this.isFavorite = false, this.attributes});
 
   @override
   final CountryCode code;
   @override
   @JsonKey()
   final bool isFavorite;
+  @override
+  final CountryAttributes? attributes;
 
   @override
   String toString() {
-    return 'Country(code: $code, isFavorite: $isFavorite)';
+    return 'Country(code: $code, isFavorite: $isFavorite, attributes: $attributes)';
   }
 
   @override
@@ -120,11 +151,13 @@ class _$CountryImpl implements _Country {
             other is _$CountryImpl &&
             (identical(other.code, code) || other.code == code) &&
             (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite));
+                other.isFavorite == isFavorite) &&
+            (identical(other.attributes, attributes) ||
+                other.attributes == attributes));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, code, isFavorite);
+  int get hashCode => Object.hash(runtimeType, code, isFavorite, attributes);
 
   @JsonKey(ignore: true)
   @override
@@ -135,12 +168,16 @@ class _$CountryImpl implements _Country {
 
 abstract class _Country implements Country {
   const factory _Country(
-      {required final CountryCode code, final bool isFavorite}) = _$CountryImpl;
+      {required final CountryCode code,
+      final bool isFavorite,
+      final CountryAttributes? attributes}) = _$CountryImpl;
 
   @override
   CountryCode get code;
   @override
   bool get isFavorite;
+  @override
+  CountryAttributes? get attributes;
   @override
   @JsonKey(ignore: true)
   _$$CountryImplCopyWith<_$CountryImpl> get copyWith =>

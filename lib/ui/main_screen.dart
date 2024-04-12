@@ -4,8 +4,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rate_converter_flutter/Route/router.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
+import 'package:rate_converter_flutter/blocs/event/bottom_country_select_event.dart';
 import 'package:rate_converter_flutter/blocs/event/main_screen_state_event.dart';
 import 'package:rate_converter_flutter/blocs/event/position_select_event.dart';
+import 'package:rate_converter_flutter/blocs/event/top_country_select_event.dart';
 import 'package:rate_converter_flutter/blocs/main_screen_state_bloc.dart';
 import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/state/bottom_country_select_state.dart';
@@ -144,10 +146,9 @@ class _TopView extends HookWidget {
                             .state
                             .country
                             ?.code;
-                        List<CountryAttributes>? a;
                         if (topCountryCode != null &&
                             bottomCountryCode != null) {
-                          a = await Future.wait([
+                          final attributeList = await Future.wait([
                             context
                                 .read<CountryAttributesRepository>()
                                 .getAttribute(topCountryCode),
@@ -155,11 +156,22 @@ class _TopView extends HookWidget {
                                 .read<CountryAttributesRepository>()
                                 .getAttribute(bottomCountryCode),
                           ]);
-                        }
-                        print(a);
-
-                        if (context.mounted) {
-                          context.go(AppPages.result.path);
+                          if (context.mounted) {
+                            try {
+                              context.read<TopCountrySelectBloc>().add(
+                                  TopCountrySelectEvent
+                                      .topCountrySetAttributeEvent(
+                                      attributes: attributeList[0]));
+                              context.read<BottomCountrySelectBloc>().add(
+                                  BottomCountrySelectEvent
+                                      .bottomCountrySetAttributeEvent(
+                                      attributes: attributeList[1]));
+                            } catch(e){
+                              // TODO implement alert
+                              print("TODO: $e");
+                            }
+                            context.go(AppPages.result.path);
+                          }
                         }
                       }()
                     : print("Toast 'Please choose 2 countries'");

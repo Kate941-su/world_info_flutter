@@ -14,6 +14,10 @@ class BottomCountrySelectBloc
       event.when(bottomCountryChangeEvent: (country) {
         final newState = state.copyWith(country: country);
         return emit(newState);
+      },
+      bottomCountrySetAttributeEvent: (attribute) {
+        final newState = state.copyWith(country: state.country?.copyWith(attributes: attribute));
+        return emit(newState);
       });
     });
   }

@@ -7,14 +7,14 @@ import '../../models/country.dart';
 class CountryAttributesView extends StatelessWidget {
   const CountryAttributesView({
     super.key,
-    required this.country,
     required this.leftCountryAttr,
     required this.rightCountryAttr,
   });
 
-  final Country country;
   final CountryAttributes leftCountryAttr;
   final CountryAttributes rightCountryAttr;
+
+  final noData = 'NO DATA';
 
   @override
   Widget build(BuildContext context) {
@@ -26,44 +26,44 @@ class CountryAttributesView extends StatelessWidget {
           children: [
             _CountryAttributeUnit(
               title: 'Region',
-              leftAttr: leftCountryAttr.region!,
-              rightAttr: rightCountryAttr.region!,
+              leftAttr: leftCountryAttr.region ?? noData,
+              rightAttr: rightCountryAttr.region ?? noData,
             ),
             _CountryAttributeUnit(
               title: 'Capital',
-              leftAttr: leftCountryAttr.capital!,
-              rightAttr: rightCountryAttr.capital!,
+              leftAttr: leftCountryAttr.capital ?? noData,
+              rightAttr: rightCountryAttr.capital ?? noData,
             ),
             _CountryAttributeUnit(
               title: 'Currency',
-              leftAttr: leftCountryAttr.currency!.name,
-              rightAttr: rightCountryAttr.currency!.name,
+              leftAttr: leftCountryAttr.currency?.name ?? noData,
+              rightAttr: rightCountryAttr.currency?.name ?? noData,
             ),
             _CountryAttributeUnit(
               title: 'Surface Area(k㎡)',
-              leftAttr: '${leftCountryAttr.surfaceArea}',
-              rightAttr: '${rightCountryAttr.surfaceArea}',
+              leftAttr: '${leftCountryAttr.surfaceArea ?? noData}',
+              rightAttr: '${rightCountryAttr.surfaceArea ?? noData}',
             ),
             _CountryAttributeUnit(
               title: 'Population(thousand)',
-              leftAttr: '${leftCountryAttr.population}',
-              rightAttr: '${rightCountryAttr.population}',
+              leftAttr: '${leftCountryAttr.population ?? noData}',
+              rightAttr: '${rightCountryAttr.population ?? noData}',
             ),
             _CountryAttributeUnit(
               title: 'GDP(billion\$)',
-              leftAttr: '${leftCountryAttr.gdp}',
-              rightAttr: '${rightCountryAttr.gdp}',
+              leftAttr: '${leftCountryAttr.gdp ?? noData}',
+              rightAttr: '${rightCountryAttr.gdp ?? noData}',
             ),
             // From the following attribute, user only can see by watching ads.
             _CountryAttributeUnit(
               title: 'Internet User Rate(%)',
-              leftAttr: '${leftCountryAttr.internetUsers}',
-              rightAttr: '${rightCountryAttr.internetUsers}',
+              leftAttr: '${leftCountryAttr.internetUsers ?? noData}',
+              rightAttr: '${rightCountryAttr.internetUsers ?? noData}',
             ),
             _CountryAttributeUnit(
               title: 'Urban Population(%)',
-              leftAttr: '${leftCountryAttr.urbanPopulation}',
-              rightAttr: '${rightCountryAttr.urbanPopulation}',
+              leftAttr: '${leftCountryAttr.urbanPopulation ?? noData}',
+              rightAttr: '${rightCountryAttr.urbanPopulation ?? noData}',
             ),
           ],
         ),
@@ -92,22 +92,19 @@ class _CountryAttributeUnit extends StatelessWidget {
           style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         Padding(
-          padding: const EdgeInsets.only(top: 6.0, left: 24, bottom: 16, right: 24),
+          padding:
+              const EdgeInsets.only(top: 6.0, left: 24, bottom: 16, right: 24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Text(
                 leftAttr,
-                style: const TextStyle(
-                  fontStyle: FontStyle.italic
-                ),
+                style: const TextStyle(fontStyle: FontStyle.italic),
               ),
               const Spacer(),
               Text(
                 rightAttr,
-                style: const TextStyle(
-                    fontStyle: FontStyle.italic
-                ),
+                style: const TextStyle(fontStyle: FontStyle.italic),
               ),
             ],
           ),
