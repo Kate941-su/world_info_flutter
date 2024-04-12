@@ -1,6 +1,8 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+            package="com.worldinfo.app"
+    >
     <application
-        android:label="rate_converter_flutter"
+        android:label="worldinfo"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

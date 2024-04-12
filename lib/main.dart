@@ -19,6 +19,7 @@ final originalCountryList = List.generate(CountryCode.values.length,
     .toList(growable: false);
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 

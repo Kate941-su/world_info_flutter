@@ -78,7 +78,9 @@ class TopViewScaffold extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(backgroundColor: AppColor.appBar, actions: [
-        IconButton(icon: const Icon(Icons.info_outline), onPressed: () {}),
+        IconButton(icon: const Icon(Icons.info_outline), onPressed: () {
+          context.go(AppPages.information.path);
+        }),
       ]),
       body: _TopView(
         isComparable: isComparable,

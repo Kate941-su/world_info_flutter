@@ -9,4 +9,7 @@ class GlobalConfig {
         return '';
     }
   }
+
+  static String get email => 'kaito.kitaya.personal@gmail.com';
+
 }

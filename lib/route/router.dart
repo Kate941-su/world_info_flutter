@@ -4,10 +4,13 @@ import 'package:rate_converter_flutter/models/country_attributes.dart';
 import 'package:rate_converter_flutter/ui/main_screen.dart';
 import 'package:rate_converter_flutter/ui/result_page/result_page.dart';
 
+import '../ui/setting_page/setting_page.dart';
+
 enum AppPages {
   splash,
   main,
-  result;
+  result,
+  information;
 
   String get path {
     switch (this) {
@@ -17,6 +20,8 @@ enum AppPages {
         return '/splash';
       case AppPages.result:
         return '/result';
+      case AppPages.information:
+        return '/information';
     }
   }
 
@@ -28,6 +33,8 @@ enum AppPages {
         return 'splash';
       case AppPages.result:
         return 'result';
+      case AppPages.information:
+        return 'information';
     }
   }
 }
@@ -46,10 +53,14 @@ class AppRouter {
     GoRoute(
         path: AppPages.result.path,
         name: AppPages.result.name,
-        builder: (context, state) => ResultPage()),
+        builder: (context, state) => const ResultPage()),
     GoRoute(
         path: AppPages.splash.path,
         name: AppPages.splash.name,
         builder: (context, state) => const Placeholder()),
+    GoRoute(
+        path: AppPages.information.path,
+        name: AppPages.information.name,
+        builder: (context, state) => const SettingPage()),
   ]);
 }
