@@ -29,47 +29,48 @@ class CountryListView extends HookWidget {
         useTextEditingController.fromValue(TextEditingValue.empty);
 
     final searchFieldListenable = useValueListenable(textEditingController);
-    final countryList = CountryListState.initialize().countryList;
-
     useEffect(() {
       textEditingController.text = searchFieldListenable.text;
-      // filteredCountryList.value = countryList
-      //     .where((it) => it.code.name
-      //         .toLowerCase()
-      //         .contains(textEditingController.text.toLowerCase()))
-      //     .toList(growable: false);
       return null;
     }, [searchFieldListenable]);
 
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: AppColor.appBar,
-        title: TextField(
-          controller: textEditingController,
-          style: const TextStyle(color: Colors.white),
-          onChanged: (it) => {},
-          decoration: const InputDecoration(
-              hintText: 'Country Name',
-              hintStyle: TextStyle(
-                color: Colors.white,
-              ),
-              fillColor: Colors.white,
-              prefixIcon: Icon(
-                Icons.search_rounded,
-                color: Colors.white,
-              )),
+    return BlocBuilder<CountryListBloc, CountryListState>(
+        builder: (context, state) {
+      final filteredCountryList = state.countryList
+          .where((it) => it.code.name
+              .toLowerCase()
+              .contains(textEditingController.text.toLowerCase()))
+          .toList(growable: false);
+      return Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColor.appBar,
+          title: TextField(
+            controller: textEditingController,
+            style: const TextStyle(color: Colors.white),
+            onChanged: (it) => {},
+            decoration: const InputDecoration(
+                hintText: 'Country Name',
+                hintStyle: TextStyle(
+                  color: Colors.white,
+                ),
+                fillColor: Colors.white,
+                prefixIcon: Icon(
+                  Icons.search_rounded,
+                  color: Colors.white,
+                )),
+          ),
         ),
-      ),
-      body: ListView.separated(
-        itemCount: countryList.length,
-        itemBuilder: (context, index) {
-          return CountryListTile(country: context.read<CountryListBloc>().state.countryList[index]);
-        },
-        separatorBuilder: (BuildContext context, int index) {
-          return const Divider();
-        },
-      ),
-    );
+        body: ListView.separated(
+          itemCount: filteredCountryList.length,
+          itemBuilder: (context, index) {
+            return CountryListTile(country: filteredCountryList[index]);
+          },
+          separatorBuilder: (BuildContext context, int index) {
+            return const Divider();
+          },
+        ),
+      );
+    });
   }
 }
 
