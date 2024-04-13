@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:rate_converter_flutter/constant/country_code_constant.dart';
 
 part 'country_attributes.freezed.dart';
 part 'country_attributes.g.dart';

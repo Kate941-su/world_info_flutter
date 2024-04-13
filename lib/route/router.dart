@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:rate_converter_flutter/models/country_attributes.dart';
 import 'package:rate_converter_flutter/ui/main_screen.dart';
 import 'package:rate_converter_flutter/ui/result_page/result_page.dart';
 

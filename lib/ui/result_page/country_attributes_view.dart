@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rate_converter_flutter/models/country_attributes.dart';
 
-import '../../models/country.dart';
 
 class CountryAttributesView extends StatelessWidget {
   const CountryAttributesView({

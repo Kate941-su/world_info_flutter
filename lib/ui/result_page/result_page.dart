@@ -5,10 +5,6 @@ import 'package:rate_converter_flutter/Route/router.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
 import 'package:rate_converter_flutter/constant/app_color.dart';
-import 'package:rate_converter_flutter/constant/country_code_constant.dart';
-import 'package:rate_converter_flutter/dummy_map/mock_reponse.dart';
-import 'package:rate_converter_flutter/models/country.dart';
-import 'package:rate_converter_flutter/models/country_attributes.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_card.dart';
 import 'package:rate_converter_flutter/ui/result_page/country_attributes_view.dart';
 
@@ -20,7 +16,7 @@ class ResultPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
           backgroundColor: AppColor.appBar,
-          title: IconButton(
+          leading: IconButton(
             onPressed: () {
               context.go(AppPages.main.path);
             },

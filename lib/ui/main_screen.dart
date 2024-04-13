@@ -17,15 +17,12 @@ import 'package:rate_converter_flutter/constant/app_color.dart';
 import 'package:rate_converter_flutter/constant/country_code_constant.dart';
 import 'package:rate_converter_flutter/main.dart';
 import 'package:rate_converter_flutter/models/country.dart';
-import 'package:rate_converter_flutter/models/country_attributes.dart';
 import 'package:rate_converter_flutter/resources/country_attributes_repository.dart';
 import 'package:rate_converter_flutter/ui/country_list_page/country_list_view.dart';
 import 'package:rate_converter_flutter/ui/country_page/color_text_button.dart';
 import 'package:rate_converter_flutter/ui/country_page/country_view.dart';
-import 'package:rate_converter_flutter/ui/result_page/result_page.dart';
 
 import '../blocs/state/main_screen_state.dart';
-import '../resources/country_attributes_repository_impl.dart';
 
 class MainScreen extends HookWidget {
   const MainScreen({super.key});
@@ -62,8 +59,7 @@ class MainScreen extends HookWidget {
                 isComparable: topCountryCode.value != CountryCode.UNTIL &&
                     bottomCountryCode.value != CountryCode.UNTIL,
               )
-            : CountryListView(countryList: originalCountryList);
-        return ResultPage();
+            : CountryListView();
       }),
     );
   }
