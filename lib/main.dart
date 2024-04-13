@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:rate_converter_flutter/Route/router.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/country_list_bloc.dart';
+import 'package:rate_converter_flutter/blocs/favorite_filter_bloc.dart';
 import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/resources/country_attributes_repository.dart';
 import 'package:rate_converter_flutter/resources/country_attributes_repository_impl.dart';
@@ -49,6 +50,8 @@ class MyApp extends StatelessWidget {
                 create: (context) => PositionSelectBloc()),
             BlocProvider<CountryListBloc>(
                 create: (context) => CountryListBloc()),
+            BlocProvider<FavoriteFilterBloc>(
+                create: (context) => FavoriteFilterBloc()),
           ],
           child: MaterialApp.router(
             title: 'Flutter Demo',

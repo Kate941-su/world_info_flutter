@@ -6,10 +6,13 @@ import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/country_list_bloc.dart';
 import 'package:rate_converter_flutter/blocs/event/bottom_country_select_event.dart';
 import 'package:rate_converter_flutter/blocs/event/country_list_state_change_event.dart';
+import 'package:rate_converter_flutter/blocs/event/favorite_filter_event.dart';
 import 'package:rate_converter_flutter/blocs/event/top_country_select_event.dart';
+import 'package:rate_converter_flutter/blocs/favorite_filter_bloc.dart';
 import 'package:rate_converter_flutter/blocs/main_screen_state_bloc.dart';
 import 'package:rate_converter_flutter/blocs/position_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/state/country_list_state.dart';
+import 'package:rate_converter_flutter/blocs/state/favorite_filter_state.dart';
 import 'package:rate_converter_flutter/blocs/state/main_screen_state.dart';
 import 'package:rate_converter_flutter/blocs/state/position_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
@@ -34,42 +37,70 @@ class CountryListView extends HookWidget {
       return null;
     }, [searchFieldListenable]);
 
-    return BlocBuilder<CountryListBloc, CountryListState>(
-        builder: (context, state) {
-      final filteredCountryList = state.countryList
-          .where((it) => it.code.name
-              .toLowerCase()
-              .contains(textEditingController.text.toLowerCase()))
-          .toList(growable: false);
-      return Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColor.appBar,
-          title: TextField(
-            controller: textEditingController,
-            style: const TextStyle(color: Colors.white),
-            onChanged: (it) => {},
-            decoration: const InputDecoration(
-                hintText: 'Country Name',
-                hintStyle: TextStyle(
-                  color: Colors.white,
-                ),
-                fillColor: Colors.white,
-                prefixIcon: Icon(
-                  Icons.search_rounded,
-                  color: Colors.white,
-                )),
+    return BlocBuilder<FavoriteFilterBloc, FavoriteFilterState>(
+        builder: (context, isFilterFavoriteState) {
+      return BlocBuilder<CountryListBloc, CountryListState>(
+          builder: (context, countryListState) {
+        final isFilteredFavorite =
+            context.read<FavoriteFilterBloc>().state.isFilteredFavorite;
+        final filteredCountryList = countryListState.countryList.where((it) {
+          if (isFilteredFavorite) {
+            return it.code.name
+                    .toLowerCase()
+                    .contains(textEditingController.text.toLowerCase()) &&
+                it.isFavorite;
+          } else {
+            return it.code.name
+                .toLowerCase()
+                .contains(textEditingController.text.toLowerCase());
+          }
+        }).toList(growable: false);
+        return Scaffold(
+          appBar: AppBar(
+            backgroundColor: AppColor.appBar,
+            title: TextField(
+              controller: textEditingController,
+              style: const TextStyle(color: Colors.white),
+              onChanged: (it) => {},
+              decoration: const InputDecoration(
+                  hintText: 'Country Name',
+                  hintStyle: TextStyle(
+                    color: Colors.white,
+                  ),
+                  fillColor: Colors.white,
+                  prefixIcon: Icon(
+                    Icons.search_rounded,
+                    color: Colors.white,
+                  )),
+            ),
+            actions: [
+              IconButton(
+                  onPressed: () {
+                    final favoriteBloc = context.read<FavoriteFilterBloc>();
+                    favoriteBloc.add(
+                        FavoriteFilterEvent.favoriteFilterChangeEvent(
+                            isFilteredFavorite:
+                                !favoriteBloc.state.isFilteredFavorite));
+                  },
+                  icon: Icon(context
+                          .read<FavoriteFilterBloc>()
+                          .state
+                          .isFilteredFavorite
+                      ? Icons.favorite
+                      : Icons.favorite_border))
+            ],
           ),
-        ),
-        body: ListView.separated(
-          itemCount: filteredCountryList.length,
-          itemBuilder: (context, index) {
-            return CountryListTile(country: filteredCountryList[index]);
-          },
-          separatorBuilder: (BuildContext context, int index) {
-            return const Divider();
-          },
-        ),
-      );
+          body: ListView.separated(
+            itemCount: filteredCountryList.length,
+            itemBuilder: (context, index) {
+              return CountryListTile(country: filteredCountryList[index]);
+            },
+            separatorBuilder: (BuildContext context, int index) {
+              return const Divider();
+            },
+          ),
+        );
+      });
     });
   }
 }
