@@ -177,9 +177,6 @@ class _CountryListTile extends StatelessWidget {
                     .read<FavoriteCountryIsarRepository>()
                     .delete(country.code);
               }
-              final dummyCounties = await context.read<FavoriteCountryIsarRepository>().getAllFavoriteCountries();
-              print('$dummyCounties');
-              print('');
             },
           ));
     });

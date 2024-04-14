@@ -12,7 +12,7 @@ class CountryListState with _$CountryListState {
     required List<Country> countryList,
   }) = _CountryListState;
 
-  factory CountryListState.initialize(FavoriteCountryIsarRepository repository) {
+  factory CountryListState.initialize() {
     return CountryListState(
         countryList: List.generate(
                 CountryCode.values.length,
@@ -21,15 +21,13 @@ class CountryListState with _$CountryListState {
             .where((it) => it.code != CountryCode.UNTIL)
             .toList(growable: false));
   }
-  static Future<CountryListState> initializeState(FavoriteCountryIsarRepository repository) async {
-    final favoriteCountries = await repository.getAllFavoriteCountries();
-    return CountryListState(
-        countryList: List.generate(
-            CountryCode.values.length,
-                (index) =>
-                Country(code: CountryCode.values[index], isFavorite: favoriteCountries.contains(CountryCode.values[index])))
-            .where((it) => it.code != CountryCode.UNTIL)
-            .toList(growable: false));
-  }
 
+  static CountryListState initializeState(List<String> codeList) {
+    return CountryListState(
+        countryList: List.generate(CountryCode.values.length, (index) {
+      return Country(
+          code: CountryCode.values[index],
+          isFavorite: codeList.contains(CountryCode.values[index].codeString));
+    }).where((it) => it.code != CountryCode.UNTIL).toList(growable: false));
+  }
 }

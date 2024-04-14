@@ -5,9 +5,11 @@ import 'package:rate_converter_flutter/ui/result_page/result_page.dart';
 import 'package:rate_converter_flutter/ui/splash_page/splash_screen.dart';
 
 import '../ui/setting_page/setting_page.dart';
+import '../ui/splash_page/splash_screen_2.dart';
 
 enum AppPages {
   splash,
+  splash2,
   main,
   result,
   information;
@@ -18,6 +20,8 @@ enum AppPages {
         return '/';
       case AppPages.splash:
         return '/splash';
+      case AppPages.splash2:
+        return '/splash2';
       case AppPages.result:
         return '/result';
       case AppPages.information:
@@ -31,6 +35,8 @@ enum AppPages {
         return 'home';
       case AppPages.splash:
         return 'splash';
+      case AppPages.splash2:
+        return 'splash2';
       case AppPages.result:
         return 'result';
       case AppPages.information:
@@ -58,6 +64,10 @@ class AppRouter {
         path: AppPages.splash.path,
         name: AppPages.splash.name,
         builder: (context, state) => const SplashScreen()),
+        GoRoute(
+            path: AppPages.splash2.path,
+            name: AppPages.splash2.name,
+            builder: (context, state) => const SplashScreen2()),
     GoRoute(
         path: AppPages.information.path,
         name: AppPages.information.name,

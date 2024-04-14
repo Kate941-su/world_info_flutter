@@ -9,8 +9,8 @@ import 'package:rate_converter_flutter/isar/isar_favorite_country.dart';
 import '../../gen/assets.gen.dart';
 import '../../resources/favorite_countries_isar_repository.dart';
 
-class SplashScreen extends HookWidget {
-  const SplashScreen({super.key});
+class SplashScreen2 extends HookWidget {
+  const SplashScreen2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,24 +28,17 @@ class SplashScreen extends HookWidget {
     // Launch isar
     // Wait until isar is launched
     context
-        .read<FavoriteCountryIsarRepository>()
-        .initializeIsarInstance(schema: FavoriteCountrySchema).then((value) => context.go(AppPages.splash2.path));
-    // context
-    //     .read<FavoriteCountryIsarRepository>()
-    //     .initializeIsarInstance(schema: FavoriteCountrySchema);
-    // context
-    //     .read<CountryListBloc>()
-    //     .add(const CountryListStateChangeEvent.countryListInitializeEvent());
-    // Future.delayed(const Duration(seconds: 3))
-    //     .then((_) async {
-    //
-    //   final dummyCounties = await context
-    //       .read<FavoriteCountryIsarRepository>()
-    //       .getAllFavoriteCountries();
-    //     print('$dummyCounties');
-    //     if (context.mounted) {
-    //       context.go(AppPages.main.path);
-    //     }
-    // } );
+        .read<CountryListBloc>()
+        .add(const CountryListStateChangeEvent.countryListInitializeEvent());
+    Future.delayed(const Duration(seconds: 3))
+        .then((_) async {
+      // final dummyCounties = await context
+      //     .read<FavoriteCountryIsarRepository>()
+      //     .getAllFavoriteCountries();
+      //   print('$dummyCounties');
+        if (context.mounted) {
+          context.go(AppPages.main.path);
+        }
+    } );
   }
 }
