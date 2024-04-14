@@ -4,6 +4,7 @@ part 'country_list_state_change_event.freezed.dart';
 
 @freezed
 class CountryListStateChangeEvent with _$CountryListStateChangeEvent {
+  const factory CountryListStateChangeEvent.countryListInitializeEvent() = _CountryListStateInitializeEvent;
   const factory CountryListStateChangeEvent.countryListStateChangeEvent(
       {required bool isFavorite, required CountryCode code}) = _CountryListStateChangeEvent;
 }

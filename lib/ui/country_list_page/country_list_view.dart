@@ -18,6 +18,8 @@ import 'package:rate_converter_flutter/blocs/state/position_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:rate_converter_flutter/constant/app_color.dart';
+import 'package:rate_converter_flutter/resources/favorite_countries_isar_repository.dart';
+import 'package:rate_converter_flutter/resources/isar_repository.dart';
 import 'package:simple_shadow/simple_shadow.dart';
 
 import '../../blocs/event/main_screen_state_event.dart';
@@ -164,9 +166,17 @@ class _CountryListTile extends StatelessWidget {
                 country.isFavorite ? Icons.favorite : Icons.favorite_border),
             onPressed: () {
               print('${country.code}, ${country.isFavorite}');
+              final targetIsFavorite = !country.isFavorite;
               context.read<CountryListBloc>().add(
                   CountryListStateChangeEvent.countryListStateChangeEvent(
-                      isFavorite: !country.isFavorite, code: country.code));
+                      isFavorite: targetIsFavorite, code: country.code));
+              if (targetIsFavorite) {
+                context.read<FavoriteCountryIsarRepository>().add(country.code);
+              } else {
+                context
+                    .read<FavoriteCountryIsarRepository>()
+                    .delete(country.code);
+              }
             },
           ));
     });
