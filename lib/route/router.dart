@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:rate_converter_flutter/ui/main_screen.dart';
 import 'package:rate_converter_flutter/ui/result_page/result_page.dart';
+import 'package:rate_converter_flutter/ui/splash_page/splash_screen.dart';
 
 import '../ui/setting_page/setting_page.dart';
 
@@ -44,7 +45,7 @@ class AppRouter {
   AppRouter._();
 
   static final GoRouter _goRouter =
-      GoRouter(initialLocation: AppPages.main.path, routes: <GoRoute>[
+      GoRouter(initialLocation: AppPages.splash.path, routes: <GoRoute>[
     GoRoute(
         path: AppPages.main.path,
         name: AppPages.main.name,
@@ -56,7 +57,7 @@ class AppRouter {
     GoRoute(
         path: AppPages.splash.path,
         name: AppPages.splash.name,
-        builder: (context, state) => const Placeholder()),
+        builder: (context, state) => const SplashScreen()),
     GoRoute(
         path: AppPages.information.path,
         name: AppPages.information.name,
