@@ -10,6 +10,7 @@ import 'package:rate_converter_flutter/resources/country_attributes_repository_i
 import 'package:rate_converter_flutter/resources/favorite_countries_isar_repository.dart';
 import 'package:rate_converter_flutter/ui/main_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rate_converter_flutter/ui/splash_page/splash_screen.dart';
 
 import 'blocs/main_screen_state_bloc.dart';
 import 'blocs/top_country_select_bloc.dart';
@@ -21,13 +22,13 @@ final originalCountryList = List.generate(CountryCode.values.length,
     .where((it) => it.code != CountryCode.UNTIL)
     .toList(growable: false);
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         ),
         RepositoryProvider<FavoriteCountryIsarRepository>(
           create: (context) =>
-              FavoriteCountryIsarRepository(FavoriteCountrySchema),
+              FavoriteCountryIsarRepository(),
         ),
       ],
       child: MultiBlocProvider(
@@ -77,6 +78,6 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MainScreen();
+    return const SplashScreen();
   }
 }

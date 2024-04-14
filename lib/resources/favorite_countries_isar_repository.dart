@@ -5,7 +5,7 @@ import 'package:rate_converter_flutter/resources/isar_repository.dart';
 import '../constant/country_code_constant.dart';
 
 class FavoriteCountryIsarRepository extends IsarRepository {
-  FavoriteCountryIsarRepository(CollectionSchema schema) : super(schema);
+  FavoriteCountryIsarRepository() : super();
   
   
   Future<List<String?>> getAllFavoriteCountries() async {

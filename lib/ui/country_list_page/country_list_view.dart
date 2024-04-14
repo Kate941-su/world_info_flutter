@@ -164,7 +164,7 @@ class _CountryListTile extends StatelessWidget {
           trailing: IconButton(
             icon: Icon(
                 country.isFavorite ? Icons.favorite : Icons.favorite_border),
-            onPressed: () {
+            onPressed: () async {
               print('${country.code}, ${country.isFavorite}');
               final targetIsFavorite = !country.isFavorite;
               context.read<CountryListBloc>().add(
@@ -177,6 +177,9 @@ class _CountryListTile extends StatelessWidget {
                     .read<FavoriteCountryIsarRepository>()
                     .delete(country.code);
               }
+              final dummyCounties = await context.read<FavoriteCountryIsarRepository>().getAllFavoriteCountries();
+              print('$dummyCounties');
+              print('');
             },
           ));
     });
