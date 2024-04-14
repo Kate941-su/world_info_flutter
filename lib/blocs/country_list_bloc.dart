@@ -1,10 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:bloc_concurrency/bloc_concurrency.dart';
 import 'package:rate_converter_flutter/blocs/state/country_list_state.dart';
 import 'package:rate_converter_flutter/resources/favorite_countries_isar_repository.dart';
-
-import '../isar/isar_favorite_country.dart';
 import '../models/country.dart';
 import 'event/country_list_state_change_event.dart';
 
