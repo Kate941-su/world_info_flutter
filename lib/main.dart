@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:rate_converter_flutter/Route/router.dart';
+import 'package:rate_converter_flutter/blocs/ad_watch_bloc.dart';
 import 'package:rate_converter_flutter/blocs/bottom_country_select_bloc.dart';
 import 'package:rate_converter_flutter/blocs/country_list_bloc.dart';
 import 'package:rate_converter_flutter/blocs/favorite_filter_bloc.dart';
@@ -10,6 +11,7 @@ import 'package:rate_converter_flutter/resources/country_attributes_repository.d
 import 'package:rate_converter_flutter/resources/country_attributes_repository_impl.dart';
 import 'package:rate_converter_flutter/resources/favorite_countries_isar_repository.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rate_converter_flutter/ui/result_page/interstitial_ad_repository.dart';
 import 'package:rate_converter_flutter/ui/splash_page/splash_screen.dart';
 
 import 'blocs/main_screen_state_bloc.dart';
@@ -26,11 +28,13 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await dotenv.load(fileName: '.env');
   MobileAds.instance.initialize();
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final interstitialAdRepository = InterstitialAdRepository();
 
   @override
   Widget build(BuildContext context) {
@@ -40,8 +44,10 @@ class MyApp extends StatelessWidget {
           create: (context) => CountryAttributesRepositoryImpl(),
         ),
         RepositoryProvider<FavoriteCountryIsarRepository>(
-          create: (context) =>
-              FavoriteCountryIsarRepository(),
+          create: (context) => FavoriteCountryIsarRepository(),
+        ),
+        RepositoryProvider<InterstitialAdRepository>(
+          create: (context) => interstitialAdRepository,
         ),
       ],
       child: MultiBlocProvider(
@@ -62,6 +68,7 @@ class MyApp extends StatelessWidget {
                     context.read<FavoriteCountryIsarRepository>())),
             BlocProvider<FavoriteFilterBloc>(
                 create: (context) => FavoriteFilterBloc()),
+            BlocProvider<AdWatchBloc>(create: (context) => AdWatchBloc()),
           ],
           child: MaterialApp.router(
             title: 'Flutter Demo',

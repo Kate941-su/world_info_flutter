@@ -1,0 +1,4 @@
+mixin AdRepository {
+  loadAd();
+  showAd();
+}

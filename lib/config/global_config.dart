@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class GlobalConfig {
+
+  GlobalConfig._();
+
   static String get apiUrl {
     switch (const String.fromEnvironment('FLAVOR')) {
       case 'develop':
@@ -22,6 +25,8 @@ class GlobalConfig {
         return Platform.isAndroid ? dotenv.env['ADMOB_DEV_UNIT_ID_ANDROID'] : dotenv.env['ADMOB_DEV_UNIT_ID_IOS'] ;
       case 'production':
         return Platform.isAndroid ? dotenv.env['ADMOB_PRD_UNIT_ID_ANDROID'] : dotenv.env['ADMOB_PRD_UNIT_ID_IOS'] ;
+      default:
+        return '';
     }
     return null;
   }
