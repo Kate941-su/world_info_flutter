@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:rate_converter_flutter/config/global_config.dart';
-import 'package:rate_converter_flutter/resources/ad_repository.dart';
+import 'package:rate_converter_flutter/resources/ad/ad_repository.dart';
 
-class InterstitialAdRepository implements AdRepository {
+abstract class InterstitialAdRepository implements AdRepository {
   InterstitialAd? _interstitialAd;
 
   InterstitialAdRepository() {
