@@ -14,20 +14,3 @@ class AdWatchBloc extends Bloc<AdWatchEvent, AdWatchState> {
     });
   }
 }
-//
-// class TopCountrySelectBloc
-//     extends Bloc<TopCountrySelectEvent, TopCountrySelectState> {
-//   TopCountrySelectBloc()
-//       : super(const TopCountrySelectState(
-//       country: Country(code: CountryCode.UNTIL))) {
-//     on<TopCountrySelectEvent>((event, emit) {
-//       event.when(topCountryChangeEvent: (country) {
-//         return emit(state.copyWith(country: country));
-//       }, topCountrySetAttributeEvent: (attribute) {
-//         final newState = state.copyWith(
-//             country: state.country?.copyWith(attributes: attribute));
-//         return emit(newState);
-//       });
-//     });
-//   }
-// }

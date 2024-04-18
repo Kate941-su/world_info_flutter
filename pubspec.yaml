@@ -43,6 +43,12 @@ dev_dependencies:
   flutter_gen_runner: ^5.4.0
   flutter_svg: ^2.0.10+1
   unused_import_remover: ^1.0.1
+
+# test packages
+  mockito: ^5.4.4
+  bloc_test: ^9.1.7
+  http_mock_adapter: ^0.6.1
+
 flutter_gen:
   output: lib/gen/
 
