@@ -25,8 +25,11 @@ class $AssetsIconsLogoGen {
   AssetGenImage get appLogo =>
       const AssetGenImage('assets/icons/logo/app_logo.png');
 
+  /// File path: assets/icons/logo/logo.png
+  AssetGenImage get logo => const AssetGenImage('assets/icons/logo/logo.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [appLogo];
+  List<AssetGenImage> get values => [appLogo, logo];
 }
 
 class $AssetsIconsSvgGen {

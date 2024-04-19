@@ -19,7 +19,7 @@ class SplashScreen2 extends HookWidget {
     }, []);
     return Scaffold(
       body: Center(
-        child: Image.asset(Assets.icons.logo.appLogo.path),
+        child: Image.asset(Assets.icons.logo.logo.path),
       ),
     );
   }

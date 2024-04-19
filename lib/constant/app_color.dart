@@ -4,6 +4,4 @@ class AppColor {
   AppColor._();
 
   static get appBar => Colors.grey;
-
-
 }

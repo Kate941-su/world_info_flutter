@@ -4,7 +4,9 @@ import 'package:go_router/go_router.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:rate_converter_flutter/Route/router.dart';
 import 'package:rate_converter_flutter/config/global_config.dart';
+import 'package:rate_converter_flutter/constant/api_ninja_url.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../constant/app_color.dart';
 import '../../gen/assets.gen.dart';
@@ -93,9 +95,25 @@ class _SettingsView extends HookWidget {
               context: context,
               applicationName: packageInfo.value.appName,
               applicationVersion: packageInfo.value.version,
-              applicationIcon: Image.asset(Assets.icons.logo.appLogo.path),
+              applicationIcon: Image.asset(Assets.icons.logo.logo.path),
             );
           },
+        ),
+        InkWell(
+          onTap: () async => await launchUrlString(CustomUrl.apiNinjasUrl),
+          child: const _SettingListTile(
+              icon: Icon(Icons.source,color: Colors.orange,),
+              title: 'Data Resources',
+              subtitle: 'API Ninjas',
+          ),
+        ),
+        InkWell(
+          onTap: () async => await launchUrlString(CustomUrl.githubUrl),
+          child: const _SettingListTile(
+            icon: Icon(Icons.source,color: Colors.orange,),
+            title: 'Source code',
+            subtitle: 'https://github.com/Kate941-su',
+          ),
         ),
       ],
     );

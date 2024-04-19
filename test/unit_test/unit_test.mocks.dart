@@ -30,10 +30,6 @@ import 'package:rate_converter_flutter/resources/favorite_countries_isar_reposit
 /// See the documentation for Mockito's code generation for more information.
 class MockFavoriteCountryIsarRepository extends _i1.Mock
     implements _i2.FavoriteCountryIsarRepository {
-  MockFavoriteCountryIsarRepository() {
-    _i1.throwOnMissingStub(this);
-  }
-
   @override
   set isar(_i3.Isar? _isar) => super.noSuchMethod(
         Invocation.setter(
@@ -50,6 +46,7 @@ class MockFavoriteCountryIsarRepository extends _i1.Mock
           [],
         ),
         returnValue: _i4.Future<List<String?>>.value(<String?>[]),
+        returnValueForMissingStub: _i4.Future<List<String?>>.value(<String?>[]),
       ) as _i4.Future<List<String?>>);
 
   @override

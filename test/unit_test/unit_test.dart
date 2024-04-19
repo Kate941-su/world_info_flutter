@@ -16,10 +16,13 @@ import 'package:rate_converter_flutter/blocs/country_list_bloc.dart';
 import 'package:rate_converter_flutter/blocs/event/ad_watch_event.dart';
 import 'package:rate_converter_flutter/blocs/event/bottom_country_select_event.dart';
 import 'package:rate_converter_flutter/blocs/event/country_list_state_change_event.dart';
+import 'package:rate_converter_flutter/blocs/event/favorite_filter_event.dart';
 import 'package:rate_converter_flutter/blocs/event/top_country_select_event.dart';
+import 'package:rate_converter_flutter/blocs/favorite_filter_bloc.dart';
 import 'package:rate_converter_flutter/blocs/state/ad_watch_state.dart';
 import 'package:rate_converter_flutter/blocs/state/bottom_country_select_state.dart';
 import 'package:rate_converter_flutter/blocs/state/country_list_state.dart';
+import 'package:rate_converter_flutter/blocs/state/favorite_filter_state.dart';
 import 'package:rate_converter_flutter/blocs/state/top_country_select_state.dart';
 import 'package:rate_converter_flutter/blocs/top_country_select_bloc.dart';
 import 'package:rate_converter_flutter/constant/country_code_constant.dart';
@@ -152,9 +155,10 @@ void mainBloc() {
             const CountryListStateChangeEvent.countryListInitializeEvent()),
         expect: () => <CountryListState>[CountryListState.initializeState([])]);
 
-
-
-
-
+    blocTest('Favorite Filter Bloc',
+        build: () => FavoriteFilterBloc(),
+      act: (bloc) => bloc.add(const FavoriteFilterEvent.favoriteFilterChangeEvent(isFilteredFavorite: true)),
+      expect: () => <FavoriteFilterState>[const FavoriteFilterState(isFilteredFavorite: true)]
+    );
   });
 }
