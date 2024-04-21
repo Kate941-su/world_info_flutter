@@ -3,11 +3,6 @@ import 'package:path_provider/path_provider.dart';
 
 abstract class IsarRepository {
   Isar? isar;
-
-  // IsarRepository(CollectionSchema schema) {
-  //   initializeIsarInstance(schema: schema);
-  // }
-
   Future<void> initializeIsarInstance(
       {required CollectionSchema schema}) async {
     final dir = await getApplicationCacheDirectory();

@@ -381,7 +381,78 @@ class CountryListBloc
 
 ## Persistent data
 
-This is a resource layer. 
+In this project, I use Isar to store the permanent data in local strage. 
+
+But in the middle of developing, You should have used [Bloc Hidrate](https://pub.dev/packages/hydrated_bloc)😅.
+
+### How to use Isar database
+
+Isar is also resource layer so I implemented it as repository.
+
+At first, I made `IsarRepository` that is abstract class to share the initialze login of all Isar repositories.
+
+But you can provide better solutions that the following soulution.
+(Use mixin etc...)
+
+
+```dart
+abstract class IsarRepository {
+  Isar? isar;
+  Future<void> initializeIsarInstance(
+      {required CollectionSchema schema}) async {
+    final dir = await getApplicationCacheDirectory();
+    isar = await Isar.open(
+      [schema],
+      directory: dir.path,
+    );
+  }
+}
+```
+
+Inherit it
+
+```dart
+import 'package:isar/isar.dart';
+import 'package:rate_converter_flutter/isar/isar_favorite_country.dart';
+import 'package:rate_converter_flutter/resources/isar_repository.dart';
+
+import '../constant/country_code_constant.dart';
+
+class FavoriteCountryIsarRepository extends IsarRepository {
+  FavoriteCountryIsarRepository() : super() {
+    print('instantiate');
+  }
+
+  Future<List<String?>> getAllFavoriteCountries() async {
+    final result = await isar?.collection<FavoriteCountry>().where().findAll();
+    if (result == null) {
+      return [];
+    }
+    return result.map((it) => it.favoriteCountry).toList(growable: false);
+  }
+
+  Future<void> add(CountryCode code) async {
+    final favoriteCountry = FavoriteCountry()
+      ..favoriteCountry = code.codeString;
+    await isar?.writeTxn(() async {
+      await isar?.collection<FavoriteCountry>().put(favoriteCountry);
+      print('isar: add ${code.codeString}');
+    });
+  }
+
+  Future<void> delete(CountryCode code) async {
+    await isar?.writeTxn(() async {
+      await isar
+          ?.collection<FavoriteCountry>()
+          .filter()
+          .favoriteCountryEqualTo(code.codeString)
+          .deleteAll();
+      print('isar: delete ${code.codeString}');
+    });
+  }
+}
+```
+
 
 ## Unit test
 
