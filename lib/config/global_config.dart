@@ -11,7 +11,7 @@ class GlobalConfig {
       case 'develop':
         return 'http://192.168.1.39:8000/api/';
       case 'production':
-        return 'http://path/';
+        return dotenv.env['PRD_API_ENDPOINT']!;
       default:
         return '';
     }

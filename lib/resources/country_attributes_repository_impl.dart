@@ -9,13 +9,17 @@ class CountryAttributesRepositoryImpl implements CountryAttributesRepository {
 
   @override
   Future<CountryAttributes> getAttribute(CountryCode countryCode) async {
-    final response = await dio.get(
-      '${GlobalConfig.apiUrl}countryinformation',
-      queryParameters: {'countryCode': countryCode.codeString},
-    );
-
-    final json = response.data as Map<String, dynamic>;
-
-    return CountryAttributes.fromJson(json);
+    try {
+      final url = '${GlobalConfig.apiUrl}countryinformation';
+      final response = await dio.get(
+        url,
+        queryParameters: {'countryCode': countryCode.codeString},
+      );
+      final json = response.data as Map<String, dynamic>;
+      return CountryAttributes.fromJson(json);
+    } catch (error) {
+      print(error);
+      return CountryAttributes.fromJson({});
+    }
   }
 }
