@@ -8,9 +8,11 @@ This repository provides you to learn following tech stacks in Flutter.
 - How to do unit test by using bloc
 
 ## Architecture
-See Architecture.png
+
+See [Architecture.png](https://github.com/Kate941-su/world_info_flutter/blob/main/Architecture.png)
 
 ## Rules in this repository
+
 - You can copy this repository without any permission.
 - You can make comment in issue.
 
