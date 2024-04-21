@@ -268,9 +268,120 @@ BlocBuilder.
 
 Feel free to open issue or give me your opinion by email!
 
+## Repository
+
+You can use built-in features in bloc when you develop repository layer.
+
+For example, you made repository like the following code.
+
+```dart
+class CountryAttributesRepositoryImpl implements CountryAttributesRepository {
+  final dio = Dio();
+
+  @override
+  Future<CountryAttributes> getAttribute(CountryCode countryCode) async {
+    try {
+      final url = '${GlobalConfig.apiUrl}countryinformation';
+      final response = await dio.get(
+        url,
+        queryParameters: {'countryCode': countryCode.codeString},
+      );
+      final json = response.data as Map<String, dynamic>;
+      return CountryAttributes.fromJson(json);
+    } catch (error) {
+      print(error);
+      return CountryAttributes.fromJson({});
+    }
+  }
+}
+```
+
+How do you implement `Deep Injection`?. You can use Repository Provider which Bloc produces by default. As you wrap your almost root widget by BlocProvider, you also have to wrap your almost root widget by RepositoryProvider to valid Deep Injection your repository.
+
+If you have only one repository, you don't have to implement `MultiRepositoryProvider`, but almost cases you have to implement multiple repository so the following code shows the example of `MultiRepositoryProvider`.
+
+```dart
+class MyApp extends StatelessWidget {
+  MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MultiRepositoryProvider(
+      providers: [
+        RepositoryProvider<CountryAttributesRepository>(
+          create: (context) => CountryAttributesRepositoryImpl(),
+        ),
+        RepositoryProvider<FavoriteCountryIsarRepository>(
+          create: (context) => FavoriteCountryIsarRepository(),
+        ),
+        RepositoryProvider<ShowMoreInterstitialAdRepository>(
+          lazy: false,
+          create: (context) => ShowMoreInterstitialAdRepository(),
+        ),
+        RepositoryProvider<ShowRateInterstitialAdRepository>(
+          lazy: false,
+          create: (context) => ShowRateInterstitialAdRepository(),
+        ),
+      ],
+      // countinue codes
+```
+
+The important thing you should know is that Repository providers are not created when the `build` function that is in `MyApp` widget.
+
+You can see the `lazy` parameter in RepositoryProvider. You can imagine that if RepositoryProcivider doesn't set `lazy:false` it will be created when it is used for the first time.(the meaning `lazy` is very intuitive in this case, I think 🤔).
+
+In this case, I have to create instance becase these repositories that have `lazy: false` have initialize logic. You should choose whether the repository has to have `lazy` or not. It's definetly case-by-case. I would say you could find during developing your application.
+
+Once you implement RepositoryProviders in your project, you can use these repositories through the `BuildContext`.
+
+```dart
+context.read<CountryAttributesRepository>().getAttribute(topCountryCode),
+```
+
+And you can inject them to your Bloc objects.
+
+```dart
+BlocProvider<AdWatchBloc>(create: (context) => AdWatchBloc()),
+```
+
+The example of implementing Bloc by using repository DI.
+
+⚠️ If you use async function in `on<T>()` function, don't forget putting `await` keyword before `event.when`!!!
+
+If you forget, you might come across async gap error!!!
+
+```dart
+class CountryListBloc
+    extends Bloc<CountryListStateChangeEvent, CountryListState> {
+  CountryListBloc(FavoriteCountryIsarRepository repository)
+      : super(CountryListState.initialize()) {
+    on<CountryListStateChangeEvent>((event, emit) async {
+      await event.when( // Don't forget await!
+        countryListStateChangeEvent: (isFavorite, code) {
+          final List<Country> newCountryList = state.countryList.map((it) {
+            if (it.code == code) {
+              return it.copyWith(code: code, isFavorite: isFavorite);
+            }
+            return it;
+          }).toList(growable: false);
+          emit(state.copyWith(countryList: newCountryList));
+        },
+        countryListInitializeEvent: () async {
+          final codeList = await repository.getAllFavoriteCountries();
+          final unwrappedList =
+              codeList.whereType<String>().toList(growable: false);
+          final newState = CountryListState.initializeState(unwrappedList);
+          emit(newState);
+        },
+      );
+    }, transformer: concurrent());
+  }
+}
+```
+
 ## Persistent data
 
-TODO: write this topic
+This is a resource layer. 
 
 ## Unit test
 
