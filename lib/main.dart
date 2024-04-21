@@ -75,6 +75,7 @@ class MyApp extends StatelessWidget {
             BlocProvider<AdWatchBloc>(create: (context) => AdWatchBloc()),
           ],
           child: MaterialApp.router(
+            debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             routerConfig: AppRouter.goRouter,
             theme: ThemeData(
