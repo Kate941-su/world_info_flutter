@@ -381,7 +381,7 @@ class CountryListBloc
 
 ## Persistent data
 
-In this project, I use Isar to store the permanent data in local strage. 
+In this project, I use Isar to store the permanent data in local strage.
 
 But in the middle of developing, You should have used [Bloc Hidrate](https://pub.dev/packages/hydrated_bloc)😅.
 
@@ -393,7 +393,6 @@ At first, I made `IsarRepository` that is abstract class to share the initialze 
 
 But you can provide better solutions that the following soulution.
 (Use mixin etc...)
-
 
 ```dart
 abstract class IsarRepository {
@@ -453,10 +452,100 @@ class FavoriteCountryIsarRepository extends IsarRepository {
 }
 ```
 
-
 ## Unit test
 
-TODO: write this topic
+Unit test is very import part of the programming. Especially in Flutter bloc, I'll explain how you
+make unit test and mocked repositories.
+
+First, you can easily make mocked blocs by bloc_test package. The following example shows how you make
+mocked bloc objects.
+
+```dart
+class MockAdWatchBloc extends MockBloc<AdWatchEvent, AdWatchState> implements AdWatchBloc {}
+```
+
+You only have to do two things to make mocked ones.
+
+- Inherit `MockedBloc` Type
+- Implement bloc type you want to mock.
+
+If you have done making mocked bloc. Let's get started to do testing!
+
+Some kinds of blocs I have already created are shown. And you can make stubed stream
+and implement the behaivior that the bloc's state wants to be. You can check whether
+the bloc has the correct state or not by `expect()` function.
+
+```dart
+  group('whenListen', () {
+    test("Ad Watch Bloc Test", () async {
+      // Create Mock Instance
+      final adWatchBloc = MockAdWatchBloc();
+
+      // Stub the listen with a fake Stream
+      whenListen(
+          adWatchBloc,
+          Stream.fromIterable([
+            // Initial State
+            const AdWatchState(isWatchRate: false, isWatchShowMore: false),
+            const AdWatchState(isWatchRate: true, isWatchShowMore: false),
+            const AdWatchState(isWatchRate: false, isWatchShowMore: true),
+          ]),
+          initialState:
+              const AdWatchState(isWatchRate: false, isWatchShowMore: false));
+
+      expect(adWatchBloc.state,
+          const AdWatchState(isWatchRate: false, isWatchShowMore: false));
+
+      // Expect that the
+      await expectLater(
+          adWatchBloc.stream,
+          emitsInOrder(<AdWatchState>[
+            const AdWatchState(isWatchRate: false, isWatchShowMore: false),
+            const AdWatchState(isWatchRate: true, isWatchShowMore: false),
+            const AdWatchState(isWatchRate: false, isWatchShowMore: true),
+          ]));
+
+      expect(adWatchBloc.state,
+          const AdWatchState(isWatchRate: false, isWatchShowMore: true));
+    });
+  });
+```
+
+You also do test by `blocTest<T, U>()`. This can do test as getting event behaivior.
+Then you may come across how to inject reposities in bloc. The packaget I recommend is
+`mockito`. Mockito is the package to mock the module that make connection to outbound.
+
+In my case, I will mock repositories by using this package.
+
+`test/unit_test/unit_test.dart`
+
+```dart
+@GenerateNiceMocks([MockSpec<FavoriteCountryIsarRepository>()])
+void mainBloc() {
+  ///
+}
+```
+
+Once you make annotation on your test function, you have to run `dart pub run build_runner`.
+This commaned generates mocking repositories. In my case, it creates `MockFavoriteCountryIsarRepository`
+
+And just use it as the following code.
+
+```dart
+blocTest('Country List Bloc Test',
+    setUp: () {
+      mockedFavoriteCountryIsarRepository =
+          MockFavoriteCountryIsarRepository();
+      when(mockedFavoriteCountryIsarRepository.getAllFavoriteCountries())
+          .thenAnswer((_) => Future<List<String?>>.value([]));
+    },
+    build: () => CountryListBloc(mockedFavoriteCountryIsarRepository),
+    act: (countryListBloc) => countryListBloc.add(
+        const CountryListStateChangeEvent.countryListInitializeEvent()),
+    expect: () => <CountryListState>[CountryListState.initializeState([])]);
+```
+
+If you have any ideas, let me know 👍
 
 ## Tips that help me
 
